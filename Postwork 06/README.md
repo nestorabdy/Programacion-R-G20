@@ -1,4 +1,4 @@
-# Postwork 6.
+# Postwork Sesión 6.
 
 ## Desarrollo
 
