@@ -50,8 +50,8 @@ empates
 ```
 Resultado
 ```R
-0   1  2  3  4  5  6 
-33 43 39 14  4  2  1 
+0   1  2  3  4  5  
+33 49 20  2  1  0 
 # Del resultado vemos que el empate con la mayor cantidad de goles fue un partido con marcador 4-4
 ```
 > 8 goles en total, el empate fue 4 - 4
