@@ -43,7 +43,6 @@ dim(iris)
  Resultado
   ```R
 [1] 150   5
-> 
  ```
   ```R
 sum(complete.cases(iris))
