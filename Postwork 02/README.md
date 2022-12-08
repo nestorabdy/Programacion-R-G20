@@ -59,8 +59,35 @@ sum(complete.cases(iris))
 g.iris <- ggplot(iris, aes(x = Sepal.Length, y=Sepal.Width, color = Species, size = Petal.Width)) + 
   geom_point(shape=10, alpha=0.5) 
  ```
-![Gráfica del unto 2](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e2.png)
+![Gráfica del punto 2](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e2.png)
 
 3) Crea una tabla llamada `iris_mean` que contenga el promedio de todas las variables agrupadas por `Species`.
 
+```R
+iris_mean <- iris %>%
+  group_by(Species) %>%
+  summarize_all(mean)
+
+iris_mean
+```
+Resultado
+````R
+# A tibble: 3 × 5
+  Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
+  <fct>             <dbl>       <dbl>        <dbl>       <dbl>
+1 setosa             5.01        3.43         1.46       0.246
+2 versicolor         5.94        2.77         4.26       1.33 
+3 virginica          6.59        2.97         5.55       2.03 
+```
+
 4) Con esta tabla, agrega a tu gráfica anterior otra geometría de puntos para agregar los promedios en la visualización. Asegúrate que el primer argumento de la geometría sea el nombre de tu tabla y que los parámetros sean `shape = 23`, `size = 4`, `fill = "black"` y `stroke = 2`. También agrega etiquetas, temas y los cambios necesarios para mejorar tu visualización.
+```R
+g.iris.mean <- g.iris + geom_point(data=iris_mean, shape=23, size=4, fill="black", stroke=2) + 
+  labs( title="Variedades de los sépalos de especies de la Flor Iris", x = "Sepal Length [cm]", y = "Sepal Width [cm]" ) + 
+  scale_y_continuous(limits = c(1.5, 4.5), breaks = seq(0,4.5, 0.5)) +
+  scale_x_continuous(limits = c(4, 8.5), breaks = seq(4,8.5, 0.5)) +
+  theme_classic()
+
+g.iris.mean
+```
+![Gráfica del punto 4](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e2.png)
