@@ -44,17 +44,33 @@ dim(goles)
 5. Responde a las siguientes preguntas: 
  - ¿Cuántos goles tuvo el partido con mayor empate? 
 ```R
-goles.mayor.empate <- goles[5,5]
+#Para obtener los empates obtenemos los valores de la diagonal principal de la tabla. Descartamos aquellos conteos que sean iguales a 0
+empates <- diag(goles)
+empates
 ```
-> 8 goles en total, el empate fue 4 a 4
+Resultado
+```R
+0   1  2  3  4  5  6 
+33 43 39 14  4  2  1 
+# Del resultado vemos que el empate con la mayor cantidad de goles fue un partido con marcador 4-4
+```
+> 8 goles en total, el empate fue 4 - 4
  - ¿En cuántos partidos ambos equipos empataron 0 a 0? 
 ```R
+#Para obtener los empates obtenemos los valores de la diagonal principal de la tabla. Descartamos aquellos conteos que sean iguales a 0
 partidos.empatados0.0 <- goles[1,1]
+partidos.empatados0.0
+```
+Resultado
+```
+> 33
 ```
 > En 33 partidos los equipos empataron 0-0
  - ¿En cuántos partidos el equipo local (HG) tuvo la mayor goleada sin dejar que el equipo visitante (AG) metiera un solo gol?
 ```R
 partidos.mayor.goleada <- goles[length(goles[,1]),1]
+partidos.mayor.goleada
 ```
 > 1 partido con el marcador 6-0
+
 Notas para los datos de soccer: https://www.football-data.co.uk/notes.txt
