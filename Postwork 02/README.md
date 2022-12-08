@@ -59,7 +59,7 @@ sum(complete.cases(iris))
 g.iris <- ggplot(iris, aes(x = Sepal.Length, y=Sepal.Width, color = Species, size = Petal.Width)) + 
   geom_point(shape=10, alpha=0.5) 
  ```
-(https://myoctocat.com/assets/images/base-octocat.svg)
+![Gráfica del unto 2](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e2.png)
 
 3) Crea una tabla llamada `iris_mean` que contenga el promedio de todas las variables agrupadas por `Species`.
 
