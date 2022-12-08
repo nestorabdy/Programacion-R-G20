@@ -71,7 +71,7 @@ iris_mean <- iris %>%
 iris_mean
 ```
 Resultado
-````R
+```R
 # A tibble: 3 × 5
   Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
   <fct>             <dbl>       <dbl>        <dbl>       <dbl>
@@ -90,4 +90,4 @@ g.iris.mean <- g.iris + geom_point(data=iris_mean, shape=23, size=4, fill="black
 
 g.iris.mean
 ```
-![Gráfica del punto 4](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e2.png)
+![Gráfica del punto 4](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e4.png)
