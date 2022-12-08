@@ -71,6 +71,10 @@ Resultado
 partidos.mayor.goleada <- goles[length(goles[,1]),1]
 partidos.mayor.goleada
 ```
+Resultado
+```
+> 33
+```
 > 1 partido con el marcador 6-0
 
 Notas para los datos de soccer: https://www.football-data.co.uk/notes.txt
