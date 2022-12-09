@@ -18,6 +18,7 @@ d <- d[complete.cases(d),]
 summary(d)
 ```
 Resultado
+
 ```R
 > str(d)
 'data.frame':	615 obs. of  3 variables:
@@ -81,6 +82,7 @@ ggplot(d.hist, aes(Var1, fill=Var2)) + geom_bar(aes(weight=Freq), position="dodg
 
 ```
 Resultado
+
 ![Histograma de meidicones por categoria](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2003/Historgrama_p4.png)
 
 5. Con ggplot, realiza un boxplot separando la distribución de `Mediciones` por `Categoría` y por `Grupo` dentro de cada categoría. ¿Consideras que hay diferencias entre categorías? ¿Los grupos al interior de cada categoría podrían estar generando el sesgo?
@@ -91,4 +93,5 @@ ggplot(d, aes(x=Categoria, y=Mediciones, fill=Grupo))+
   theme_classic()
 ```
 Resultado
+
 ![Boxplot por categoria y grupo](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2003/Boxplot_p4.png)
