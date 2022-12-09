@@ -44,7 +44,7 @@ Resultado
 ```
 0.1125002
 ```
-> P(x<1.85 USD) = 11.25 %
+> La probabilidad de que el total de cargos internacionales sea menor a 1.85 usd es del `11.25 %`
 
 ![P( x<1.85 USD](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/grafica_p4_e2.png)
 
@@ -56,7 +56,7 @@ Resultado
 ```
 0.3773985
 ```
-> P(x>3 USD) = 37.74 %
+> La probabilidad de que el total de cargos internacionales sea mayor a 3 usd es del `37.74 %`
 
 ![ P(x>3 USD)](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/grafica_p4_e3.png)
 
@@ -69,30 +69,33 @@ Resultado
 ```
 0.7060114
 ```
-> P(x>=2.35 & x<=4.85) = 70.60 %
+> La probabilidad de que el total de cargos internacionales esté entre 2.35usd y 4.85 usd es del 70.60 %
 
 ![P( x>=2.35 & x<=4.85) ](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/grafica_p4_e4.png)
 
 5. Con una probabilidad de 0.48, ¿cuál es el total de cargos internacionales más alto que podría esperar?
 ```R 
-pnorm(q = 1.85, mean = promedio, sd = desv, lower.tail = TRUE)
+c <- qnorm(p = 0.48, mean = promedio, sd = desv)
+c
 ```
 Resultado
 ```
-0.1125002
+2.726777
 ```
-> La probabilidad P( x<1.85 USD) = 11.25 %
+> Con una probabilidad de 0.48, el total de cargos internacionales más alto que podría esperar es de `2.72 USD`
 
 ![P( x<1.85 USD](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/grafica_p4_e5.png)
 
 6. ¿Cuáles son los valores del total de cargos internacionales que dejan exactamente al centro el 80% de probabilidad?
 ```R 
-curve(dnorm(x, mean = promedio, sd = desv), from=0, to=5, col='blue', main = "Distribución \n teórica", ylab = "f(x)", xlab = "X")
+a<-qnorm(p = 0.10, mean = promedio, sd = desv); b<-qnorm(p = 0.90, mean = promedio, sd = desv)
+a;b
 ```
 Resultado
 ```
-0.1125002
+[1] 1.798583
+[1] 3.73058
 ```
-> La probabilidad P( x<1.85 USD) = 11.25 %
+> Los valores del total de cargos internacionales que dejan exactamente al centro el 80% de probabilidad, son a= 1.79 USD y b= 3.73 USD
 
 ![P( x<1.85 USD](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/grafica_p4_e6.png)
