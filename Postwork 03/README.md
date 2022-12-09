@@ -54,6 +54,9 @@ attr(,"freq")
 ```
 2. Con base en tu resultado anteior, ¿qué se puede concluir respecto al sesgo de `Mediciones`?
 
+> La moda < Mediana  < Media  
+>    23.3 <   49.3   < 62.88  
+> La distribución tiene sesgo a la derecha
 
 3. Calcula e interpreta la desviación estándar y los cuartiles de la distribución de `Mediciones`
 ```R
@@ -85,6 +88,9 @@ Resultado
 
 ![Histograma de meidicones por categoria](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2003/Historgrama_p4.png)
 
+>¿Consideras que sólo una categoría está generando el sesgo?  
+>La tres categorías tienen un corportamiento similar, todas están sesgadas a la derecha. No es posible concluir que una categoría este provocando el sesgo
+
 5. Con ggplot, realiza un boxplot separando la distribución de `Mediciones` por `Categoría` y por `Grupo` dentro de cada categoría. ¿Consideras que hay diferencias entre categorías? ¿Los grupos al interior de cada categoría podrían estar generando el sesgo?
 ```R
 ggplot(d, aes(x=Categoria, y=Mediciones, fill=Grupo))+
@@ -95,3 +101,32 @@ ggplot(d, aes(x=Categoria, y=Mediciones, fill=Grupo))+
 Resultado
 
 ![Boxplot por categoria y grupo](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2003/Boxplot_p4.png)
+ > ¿Consideras que hay diferencias entre categorías?  
+ > Si hay diferencias entre los grupos. El grupo 1 de cada categoría tiene un comportamiento similar, e todas las categorías. Sin embargo, se puede observar que las medidas de tendencia central y de dispersión varían para el Grupo 0 de las diferentes categorías 
+ > Si calculamos las medidas de tendencia por Categoría y a su vez por Grupo podemos observar una mayor diferencia en los valores del Grupo 0. 
+ > Otra conclusión que vemos en la tabla es que la muestra no fue tomada de manera aleatoria, existe mayor prevalencia de datos del Grupo 0 que del Grupo 1
+
+```R
+resumen.mediciones <- d %>%
+  group_by(Categoria, Grupo) %>%
+  summarize(mean_m = mean(Mediciones),
+            mediana_m=median(Mediciones),
+            sd_m = sd(Mediciones),
+   sd_m = sd(Mediciones),
+   n = n())
+resumen.mediciones
+```
+Salida
+```R
+  Categoria Grupo mean_m mediana_m  sd_m     n
+  <fct>     <fct>  <dbl>     <dbl> <dbl> <int>
+1 C1        0       47.1      32.7  46.0   152
+2 C1        1       48.7      31.6  52.1    50
+3 C2        0       69.2      56.7  51.6   146
+4 C2        1       47.7      32.6  42.2    49
+5 C3        0       87.4      76.3  61.0   146
+6 C3        1       49.3      37    41.5    48
+```
+
+> ¿Los grupos al interior de cada categoría podrían estar generando el sesgo?  
+> Si, los grupo generan el sesgo porque el tamaño de la muestra del Grupo 0 es mucho mayor al tamaño del Grupo 1
