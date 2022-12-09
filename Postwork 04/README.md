@@ -16,11 +16,9 @@ desv <- sd(total_intl_charge)
 hist(df$total_intl_charge, prob=T, main="Histograma \ndel total de Cargos internacionales")
 ```
 Salida
-> Promedio = 2.7645
-
-> Mediana = 2.78
-
-> Desviación estandar= 0.7537
+> Promedio = 2.7645  
+Mediana = 2.78  
+Desviación estandar= 0.7537  
 
 ![Histograma de Total de cargos internacionales](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/histograma_TCInt.png)
 
