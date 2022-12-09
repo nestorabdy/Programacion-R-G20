@@ -96,6 +96,6 @@ Resultado
 [1] 1.798583
 [1] 3.73058
 ```
-> Los valores del total de cargos internacionales que dejan exactamente al centro el 80% de probabilidad, son a= 1.79 USD y b= 3.73 USD
+> Los valores del total de cargos internacionales que dejan exactamente al centro el 80% de probabilidad, son `a= 1.79 USD` y `b= 3.73 USD`
 
 ![P( x<1.85 USD](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2004/grafica_p4_e6.png)
