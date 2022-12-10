@@ -48,6 +48,13 @@ empates
 
 # Del resultado vemos que el empate con la mayor cantidad de goles fue un partido con marcador 4-4
 
+#Desarrollo: convertir 0 a NA y omitir NA
+(empates[empates==0] <- NA);(empates<-na.omit(empates))
+#Extraer el de mayor empate
+(mayor_empate<-tail(empates,1))
+
+#Cuantos goles tuvo el mayor empate ?
+(totgoles<-(as.numeric(names(mayor_empate)))*2)
 
 #  b) ¿En cuántos partidos ambos equipos empataron 0 a 0?
 
