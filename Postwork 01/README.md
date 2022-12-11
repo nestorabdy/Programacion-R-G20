@@ -73,7 +73,7 @@ partidos.mayor.goleada
 ```
 Resultado
 ```
-> 33
+> 1
 ```
 > 1 partido con el marcador 6-0
 
