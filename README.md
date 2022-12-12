@@ -2,7 +2,7 @@
 Equipo 20
 
 ## :bookmark_tabs: Postworks del modulo
-- [`Postwork 1` Introducción a R ](./tree/main/Postwork%2001)
+- [`Postwork 1` Introducción a R ](./Postwork%2001)
 - [`Postwork 2` Manipulación y visualización de datos en R](https://github.com/nestorabdy/Programacion-R-G20/tree/main/Postwork%2002)
 - [`Postwork 3` Análisis Exploratorio de Datos](https://github.com/nestorabdy/Programacion-R-G20/tree/main/Postwork%2003)
 - [`Postwork 4` Probabilidad y funciones de distribución](https://github.com/nestorabdy/Programacion-R-G20/tree/main/Postwork%2004)
