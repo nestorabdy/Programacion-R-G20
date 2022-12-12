@@ -58,7 +58,7 @@ sum(complete.cases(iris))
 g.iris <- ggplot(iris, aes(x = Sepal.Length, y=Sepal.Width, color = Species, size = Petal.Width)) + 
   geom_point(shape=10, alpha=0.5) 
  ```
-![Gráfica del punto 2](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e2.png)
+![Gráfica del punto 2](./grafica_p2_e2.png)
 
 3) Crea una tabla llamada `iris_mean` que contenga el promedio de todas las variables agrupadas por `Species`.
 
@@ -89,4 +89,4 @@ g.iris.mean <- g.iris + geom_point(data=iris_mean, shape=23, size=4, fill="black
 
 g.iris.mean
 ```
-![Gráfica del punto 4](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2002/grafica_p2_e4.png)
+![Gráfica del punto 4](./grafica_p2_e4.png)
