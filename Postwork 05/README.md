@@ -18,7 +18,7 @@ Estudios recientes sobre las mismas especies muestran que:
 >H<sub>O</sub>: promedio == 5.7 cm  
 >H<sub>A</sub>: promedio != 5.7 cm  
 
-**Nivel de significancia **
+**Nivel de significancia**
 > NC = 0.01
 
 **Test de dos colas**
@@ -40,7 +40,7 @@ t = -13.922, df = 49, p-value < 2.2e-16
 
 - En promedio, el ancho del pétalo de la especie virginica (Petal.Width) es menor a 2.1 cm
 
-**Establecimiento de hipotesis  ** 
+**Establecimiento de hipotesis** 
 >H<sub>O</sub>: En promedio, el ancho del pétalo de la especie virginica es mayor o igual a 2.1 cm  
 >H<sub>A</sub>: En promedio, el ancho del pétalo de la especie virginica es menor a 2.1 cm
 
@@ -137,6 +137,9 @@ summary(anova)
 Species       2  11.35   5.672   49.16 <2e-16 ***
 Residuals   147  16.96   0.115 
 ```
+
+![Boxplot para ANOVA](./p5_boxplot.png)
+![Boxplot para ANOVA](./p5_diff_mean.png)
 
 **Conclusión**
 > p-value <2e-16   
