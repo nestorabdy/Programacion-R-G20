@@ -12,7 +12,7 @@
 
 #### Desarrollo
 
-1) Inspecciona el DataSet iris_meaniris` disponible directamente en R. Identifica las variables que contiene y su tipo, asegúrate de que no hayan datos faltantes y 
+**1.** Inspecciona el DataSet iris_meaniris` disponible directamente en R. Identifica las variables que contiene y su tipo, asegúrate de que no hayan datos faltantes y 
 que los datos se encuentran listos para usarse.
 
 - Nombres del dataframe *iris*
@@ -53,14 +53,14 @@ sum(complete.cases(iris))
  ```
  > El data frame esta completo, la dimension es igual al numero de casos completos.
 
-2) Crea una gráfica de puntos que contenga `Sepal.Lenght` en el eje horizontal, `Sepal.Width` en el eje vertical, que identifique `Species` por color y que el tamaño de la figura está representado por `Petal.Width`. Asegúrate de que la geometría contenga `shape = 10` y `alpha = 0.5`.
+**2.** Crea una gráfica de puntos que contenga `Sepal.Lenght` en el eje horizontal, `Sepal.Width` en el eje vertical, que identifique `Species` por color y que el tamaño de la figura está representado por `Petal.Width`. Asegúrate de que la geometría contenga `shape = 10` y `alpha = 0.5`.
   ```R
 g.iris <- ggplot(iris, aes(x = Sepal.Length, y=Sepal.Width, color = Species, size = Petal.Width)) + 
   geom_point(shape=10, alpha=0.5) 
  ```
 ![Gráfica del punto 2](./grafica_p2_e2.png)
 
-3) Crea una tabla llamada `iris_mean` que contenga el promedio de todas las variables agrupadas por `Species`.
+**3.** Crea una tabla llamada `iris_mean` que contenga el promedio de todas las variables agrupadas por `Species`.
 
 ```R
 iris_mean <- iris %>%
@@ -79,7 +79,7 @@ Resultado
 3 virginica          6.59        2.97         5.55       2.03 
 ```
 
-4) Con esta tabla, agrega a tu gráfica anterior otra geometría de puntos para agregar los promedios en la visualización. Asegúrate que el primer argumento de la geometría sea el nombre de tu tabla y que los parámetros sean `shape = 23`, `size = 4`, `fill = "black"` y `stroke = 2`. También agrega etiquetas, temas y los cambios necesarios para mejorar tu visualización.
+**4.** Con esta tabla, agrega a tu gráfica anterior otra geometría de puntos para agregar los promedios en la visualización. Asegúrate que el primer argumento de la geometría sea el nombre de tu tabla y que los parámetros sean `shape = 23`, `size = 4`, `fill = "black"` y `stroke = 2`. También agrega etiquetas, temas y los cambios necesarios para mejorar tu visualización.
 ```R
 g.iris.mean <- g.iris + geom_point(data=iris_mean, shape=23, size=4, fill="black", stroke=2) + 
   labs( title="Variedades de los sépalos de especies de la Flor Iris", x = "Sepal Length [cm]", y = "Sepal Width [cm]" ) + 
