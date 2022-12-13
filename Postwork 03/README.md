@@ -40,7 +40,7 @@ Resultado
                    Max.   :290.60
 ```
 
-1. Calcula e interpreta las medidas de tendencia central de la variable `Mediciones`
+**1.** Calcula e interpreta las medidas de tendencia central de la variable `Mediciones`
 ```R
 mean(d$Mediciones);median(d$Mediciones);Mode(d$Mediciones)
 ```
@@ -52,13 +52,13 @@ Resultado
 attr(,"freq")
 [1] 6
 ```
-2. Con base en tu resultado anteior, ¿qué se puede concluir respecto al sesgo de `Mediciones`?
+**2.** Con base en tu resultado anteior, ¿qué se puede concluir respecto al sesgo de `Mediciones`?
 
 > La moda < Mediana  < Media  
 >    23.3 <   49.3   < 62.88  
 > La distribución tiene sesgo a la derecha
 
-3. Calcula e interpreta la desviación estándar y los cuartiles de la distribución de `Mediciones`
+**3.** Calcula e interpreta la desviación estándar y los cuartiles de la distribución de `Mediciones`
 ```R
 sd(d$Mediciones)
 cuartiles.d <- quantile(d$Mediciones, probs = c(0.25, 0.50, 0.75))
@@ -72,7 +72,7 @@ Resultado
     23.45 49.30 82.85 
 [1] 59.4
 ```
-4. Con ggplot, realiza un histograma separando la distribución de `Mediciones` por `Categoría` ¿Consideras que sólo una categoría está generando el sesgo?
+**4.** Con ggplot, realiza un histograma separando la distribución de `Mediciones` por `Categoría` ¿Consideras que sólo una categoría está generando el sesgo?
 ```R
 d.table <-table(cut(d$Mediciones, breaks = seq(0,300 , by = 50)),d$Categoria)
 d.hist <- as.data.frame(d.table)
@@ -86,12 +86,12 @@ ggplot(d.hist, aes(Var1, fill=Var2)) + geom_bar(aes(weight=Freq), position="dodg
 ```
 Resultado
 
-![Histograma de meidicones por categoria](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2003/Historgrama_p4.png)
+![Histograma de meidicones por categoria](./Historgrama_p4.png)
 
->¿Consideras que sólo una categoría está generando el sesgo?  
+>**¿Consideras que sólo una categoría está generando el sesgo?** 
 >La tres categorías tienen un corportamiento similar, todas están sesgadas a la derecha. No es posible concluir que una categoría este provocando el sesgo
 
-5. Con ggplot, realiza un boxplot separando la distribución de `Mediciones` por `Categoría` y por `Grupo` dentro de cada categoría. ¿Consideras que hay diferencias entre categorías? ¿Los grupos al interior de cada categoría podrían estar generando el sesgo?
+**5.** Con ggplot, realiza un boxplot separando la distribución de `Mediciones` por `Categoría` y por `Grupo` dentro de cada categoría. ¿Consideras que hay diferencias entre categorías? ¿Los grupos al interior de cada categoría podrían estar generando el sesgo?
 ```R
 ggplot(d, aes(x=Categoria, y=Mediciones, fill=Grupo))+
   geom_boxplot()+
@@ -100,8 +100,8 @@ ggplot(d, aes(x=Categoria, y=Mediciones, fill=Grupo))+
 ```
 Resultado
 
-![Boxplot por categoria y grupo](https://github.com/nestorabdy/Programacion-R-G20/blob/main/Postwork%2003/Boxplot_p4.png)
- > ¿Consideras que hay diferencias entre categorías?  
+![Boxplot por categoria y grupo](./Boxplot_p4.png)
+ > **¿Consideras que hay diferencias entre categorías?**  
  > Si hay diferencias entre los grupos. El grupo 1 de cada categoría tiene un comportamiento similar, e todas las categorías. Sin embargo, se puede observar que las medidas de tendencia central y de dispersión varían para el Grupo 0 de las diferentes categorías 
  > Si calculamos las medidas de tendencia por Categoría y a su vez por Grupo podemos observar una mayor diferencia en los valores del Grupo 0. 
  > Otra conclusión que vemos en la tabla es que la muestra no fue tomada de manera aleatoria, existe mayor prevalencia de datos del Grupo 0 que del Grupo 1
@@ -128,5 +128,5 @@ Salida
 6 C3        1       49.3      37    41.5    48
 ```
 
-> ¿Los grupos al interior de cada categoría podrían estar generando el sesgo?  
+> **¿Los grupos al interior de cada categoría podrían estar generando el sesgo?**  
 > Si, los grupo generan el sesgo porque el tamaño de la muestra del Grupo 0 es mucho mayor al tamaño del Grupo 1
