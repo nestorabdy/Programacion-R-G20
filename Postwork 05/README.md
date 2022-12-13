@@ -69,11 +69,11 @@ t = -1.9052, df = 49, p-value = 0.03132
 
 #### - En promedio, el largo del pétalo de la especie virgínica es 1.1 cm más grande que el promedio del largo del pétalo de la especie versicolor.
 **Establecimiento de hipotesis**
->H<sub>O</sub>: En promedio, el ancho del pétalo de la especie virginica es mayor o igual a 2.1 cm  
->H<sub>A</sub>: En promedio, el ancho del pétalo de la especie virginica es menor a 2.1 cm
+>H<sub>O</sub>: En promedio, el ancho del pétalo de la especie virginica es mayor o igual a 2.1 cm    
+>H<sub>A</sub>: En promedio, el ancho del pétalo de la especie virginica es menor a 2.1 cm  
 
->H<sub>O</sub>: promedio_largo_petalo_virginica-promedio_largo_petalo_versicolor <= 1.1 cm  
->H<sub>A</sub>: promedio_largo_petalo_virginica-promedio_largo_petalo_versicolor > 1.1 cm  
+>H<sub>O</sub>: promedio_largo_petalo_virginica-promedio_largo_petalo_versicolor <= 1.1 cm    
+>H<sub>A</sub>: promedio_largo_petalo_virginica-promedio_largo_petalo_versicolor > 1.1 cm    
 
 **Nivel de significancia**  
 > NC = 0.01
@@ -106,7 +106,7 @@ t = 1.873, df = 98, p-value = 0.03202
 
 ### - En promedio, no existe diferencia en el ancho del sépalo entre las 3 especies.
 **Establecimiento de hipotesis**
->H<sub>O</sub>: El promedio del ancho del sépalo de las tres especies es igual 
+>H<sub>O</sub>: El promedio del ancho del sépalo de las tres especies es igual  
 >H<sub>A</sub>: Existe al menos un par especies cuyos promedios de ancho de sépalo es distinto
 
 
