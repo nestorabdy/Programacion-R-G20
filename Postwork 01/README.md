@@ -11,19 +11,19 @@ El siguiente postwork, te servirá para ir desarrollando habilidades como si se 
 A continuación aparecen una serie de objetivos que deberás cumplir, es un ejemplo real de aplicación y tiene que ver con datos referentes a equipos de la liga española de fútbol (recuerda que los datos provienen siempre de diversas naturalezas), en este caso se cuenta con muchos datos que se pueden aprovechar, explotarlos y generar análisis interesantes que se pueden aplicar a otras áreas. Siendo así damos paso a las instrucciones:
  ## Desarrollo
 
-1. Del siguiente enlace, descarga los datos de soccer de la temporada 2019/2020 de la primera división de la liga española: https://www.football-data.co.uk/spainm.php
+**1.** Del siguiente enlace, descarga los datos de soccer de la temporada 2019/2020 de la primera división de la liga española: https://www.football-data.co.uk/spainm.php
 
-2. Importa los datos a R como un Dataframe
+**2.** Importa los datos a R como un Dataframe
 ```R
 sp1 <- read.csv("SP1.csv")
 ```
 
-3. Del dataframe que resulta de importar los datos a R, extrae las columnas que contienen los números de goles anotados por los equipos que jugaron en casa (FTHG) y los goles anotados por los equipos que jugaron como visitante (FTAG); guárdalos en vectores separados
+**3.** Del dataframe que resulta de importar los datos a R, extrae las columnas que contienen los números de goles anotados por los equipos que jugaron en casa (FTHG) y los goles anotados por los equipos que jugaron como visitante (FTAG); guárdalos en vectores separados
 ```R
 FTHG <- sp1$FTHG
 FTAG <- sp1$FTAG
 ```
-4. Consulta cómo funciona la función table en R. Para ello, puedes ingresar los comandos help("table") o ?table para leer la documentación.
+**4.** Consulta cómo funciona la función table en R. Para ello, puedes ingresar los comandos help("table") o ?table para leer la documentación.
 ```R
 ?table
 goles <- table(FTHG,FTAG)
@@ -41,7 +41,7 @@ dim(goles)
 | **5** |  2|  3|  3|  0|  0|  0|
 | **6** |  1|  0|  0|  0|  0|  0|
  
-5. Responde a las siguientes preguntas: 
+**5.** Responde a las siguientes preguntas: 
  - ¿Cuántos goles tuvo el partido con mayor empate? 
 ```R
 #Para obtener los empates obtenemos los valores de la diagonal principal de la tabla. Descartamos aquellos conteos que sean iguales a 0
