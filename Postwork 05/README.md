@@ -9,7 +9,7 @@
 El data frame iris contiene información recolectada por Anderson sobre 50 flores de 3 especies distintas (setosa, versicolor y virginca), incluyendo medidas en centímetros del largo y ancho del sépalo así como de los pétalos.
 Estudios recientes sobre las mismas especies muestran que:
 
-- En promedio, el largo del sépalo de la especie setosa (Sepal.Length) es igual a 5.7 cm
+### - En promedio, el largo del sépalo de la especie setosa (Sepal.Length) es igual a 5.7 cm
 
 **Establecimiento de hipotesis**   
 >H<sub>O</sub>: En promedio, el largo del sépalo de la especie setosa es igual a 5.7 cm  
@@ -38,7 +38,7 @@ t = -13.922, df = 49, p-value < 2.2e-16
 > p-value = 2.2e-16  < 0.01 (99% NC)  
 > EEE para rechazar Ho a favor de Ha es decir el promedio es diferente a 5.7 cm"
 
-- En promedio, el ancho del pétalo de la especie virginica (Petal.Width) es menor a 2.1 cm
+### - En promedio, el ancho del pétalo de la especie virginica (Petal.Width) es menor a 2.1 cm
 
 **Establecimiento de hipotesis** 
 >H<sub>O</sub>: En promedio, el ancho del pétalo de la especie virginica es mayor o igual a 2.1 cm  
@@ -67,7 +67,7 @@ t = -1.9052, df = 49, p-value = 0.03132
 > p-value = 0.03132  > 0.01 (99% NC)  
 > No EEE para rechazar (NO rechazo Ho) es decir el promedio del ancho es mayor o igual que 2.1
 
-- En promedio, el largo del pétalo de la especie virgínica es 1.1 cm más grande que el promedio del largo del pétalo de la especie versicolor.
+#### - En promedio, el largo del pétalo de la especie virgínica es 1.1 cm más grande que el promedio del largo del pétalo de la especie versicolor.
 **Establecimiento de hipotesis**
 >H<sub>O</sub>: En promedio, el ancho del pétalo de la especie virginica es mayor o igual a 2.1 cm  
 >H<sub>A</sub>: En promedio, el ancho del pétalo de la especie virginica es menor a 2.1 cm
@@ -104,7 +104,7 @@ t = 1.873, df = 98, p-value = 0.03202
 > p-value = 0.03203 > 0.01 (99% NC) No EEE para rechazar Ho  
 > Es decir el promedio de largo del petalo virginica no es mas grande que el de la versicolor
 
-- En promedio, no existe diferencia en el ancho del sépalo entre las 3 especies.
+### - En promedio, no existe diferencia en el ancho del sépalo entre las 3 especies.
 **Establecimiento de hipotesis**
 >H<sub>O</sub>: El promedio del ancho del sépalo de las tres especies es igual 
 >H<sub>A</sub>: Existe al menos un par especies cuyos promedios de ancho de sépalo es distinto
@@ -144,7 +144,7 @@ Residuals   147  16.96   0.115
 **Conclusión**
 > p-value <2e-16   
 > p-value < 0.01 (99% NC) No EEE para rechazar Ho  
->Hemos obtenido un p-valor del orden de 2e-16. Esto nos permite rechazar la hipótesis nula y concluir que el ancho se sepalo para las diferentes especies  de flor iris consideradas NO son iguales. La grafica de fdifernecias de promedios y el digrama boxplot apoyan visulamente el rechazo de la hipótesis nul
+>Hemos obtenido un p-valor del orden de 2e-16. Esto nos permite rechazar la hipótesis nula en favor d ela hipotesis alternativa y concluir que el ancho se sepalo para las diferentes especies  de flor iris consideradas NO son iguales. La grafica de fdifernecias de promedios y el digrama boxplot apoyan visulamente el rechazo de la hipótesis nul
 
 Utilizando pruebas de inferencia estadística, concluye si existe evidencia suficiente para concluir que los datos recolectados por Anderson están en línea con los nuevos estudios.
 
