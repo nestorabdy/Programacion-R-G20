@@ -179,9 +179,6 @@ resumen.df.3
 logistic.1 <- glm(IA ~ nse5f+ area + numpeho + refin + edadjef + sexojef + 
                     añosedu + ln_als + ln_alns, family = binomial)
 
-logistic.1 <- glm(IA ~ nse5f+ area + numpeho + refin + edadjef + sexojef + 
-                    añosedu + ln_als + ln_alns, family = binomial)
-
 summary(logistic.1)
 
 
