@@ -24,38 +24,33 @@ nse5f (Nivel socieconómico del hogar): 1 Bajo, 2 Medio bajo, 3 Medio, 4 Medio a
 #ln_alns (Logarítmo natural del gasto en alimentos no saludables)
 #IA (Inseguridad alimentaria en el hogar): 0 No presenta IA, 1 Presenta IA"
 
+library(dplyr)
+library(ggplot2)
+
 df <- read.csv("https://raw.githubusercontent.com/beduExpert/Programacion-R-Santander-2022/main/Sesion-08/Postwork/inseguridad_alimentaria_bedu.csv")
 
 
-str(df)
-sum(complete.cases(df))
-
+#Sugerimos que el campo nse5f quede con un valor numérico para fines de cálculo de parámetros estadísticos
 # df$nse5f<- factor(df$nse5f, levels = c("Bajo", "Medio_bajo", "Medio", "Medio_alto", "Alto"), ordered = TRUE)
-# df$sexojef <- factor(var$sexojef)
+
+# conversión de las variables categóricas
+
 df$area <- factor(df$area,labels =c("Urbana","Rural"))
 df$refin <- factor(df$refin,labels =c("No","Si"))
 df$sexojef <- factor(df$sexojef,labels =c("Hombre","Mujer"))
 df$IA <- factor(df$IA,labels =c("No","Si"))
 
-library(tidyverse)
+# consideramos que el campo nse5f se mantenga con los valores numéricos para fines de cálculos estadísticos
 
-#no son factor
-#df.select <- select(df,IA,numpeho,edadjef, añosedu, ln_alns, ln_als)
+ # df$nse5f<- factor(df$nse5f, levels = c("Bajo", "Medio_bajo", "Medio", "Medio_alto", "Alto"), ordered = TRUE)
+   
 
-#round(cor(df.select),4)  
-
-#attach(df)
-
-#pairs"(~IA+nse5f+sexojef,
-#      data=df, gap=0.4,cex.labels=1.5)
-"
-## NAs
 sum(complete.cases(df))
 sum(complete.cases(df$edadjef))
 sum(complete.cases(df$sexojef))
 sum(complete.cases(df$ln_als))
 sum(complete.cases(df$ln_alns))
 
-df.clean <- df[complete.cases(df),]
-str(df.clean)
-summary(df.clean)"
+df.limpio <- df[complete.cases(df),]
+str(df.limpio)
+summary(df.limpio)
