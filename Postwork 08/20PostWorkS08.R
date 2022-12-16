@@ -174,8 +174,21 @@ resumen.df.3 <- df.limpio %>%
             n = n())
 resumen.df.3
 
+#3Probabilidad de presentar IA
+t<-table(IA)
+t
 
-#Modelo Regresion Logistica
+transform(t,
+          rel_freq=prop.table(Freq))
+
+barplot(table(IA)/length(IA), 
+        main = "Relacion Inseguridad Alimentaria de la muestra", 
+        xlab = "Resultado",
+        names = c("NO Presenta IA", "Presenta IA"))
+
+
+
+#5Modelo Regresion Logistica
 logistic.1 <- glm(IA ~ nse5f+ area + numpeho + refin + edadjef + sexojef + 
                     añosedu + ln_als + ln_alns, family = binomial)
 
