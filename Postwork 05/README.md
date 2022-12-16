@@ -143,7 +143,7 @@ Residuals   147  16.96   0.115
 
 **Conclusión**
 > p-value <2e-16   
-> p-value < 0.01 (99% NC) No EEE para rechazar Ho  
+> p-value < 0.01 (99% NC) EEE para rechazar Ho  
 >Hemos obtenido un p-valor del orden de 2e-16. Esto nos permite rechazar la hipótesis nula en favor d ela hipotesis alternativa y concluir que el ancho se sepalo para las diferentes especies  de flor iris consideradas NO son iguales. La grafica de fdifernecias de promedios y el digrama boxplot apoyan visualmente el rechazo de la hipótesis nula
 
 Utilizando pruebas de inferencia estadística, concluye si existe evidencia suficiente para concluir que los datos recolectados por Anderson están en línea con los nuevos estudios.
