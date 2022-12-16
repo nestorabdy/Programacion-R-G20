@@ -69,7 +69,7 @@ str(df.limpio)
 Para la variable de "Logaritmo natural de Gasto en alimentos saludables" se realizó en primer lugar un Histograma de densidad, para ver la distribución de 
 los datos.
 ```
-hist(df$ln_als, prob=T, main="Logaritmo natural de Gasto en alimentos saludables", xlab="ln de Gastos en alimentos saludables")
+hist(df.limpio$ln_als, prob=T, main="Logaritmo natural de Gasto en alimentos saludables", xlab="ln de Gastos en alimentos saludables")
 ```
 Después se procedió a sacar las medidas de tendencia central (media, moda y mediana) de dicha variable, así como las medidas de dispersión (varianza, desviación
 estándar y dispersión alrededor de la media:
@@ -86,10 +86,54 @@ sd(ln_als)   #Desviación estándar
 IQR(ln_als)  #Dispersión alrededor de la media
 ```
 Arrojando los siguientes resultados:
-Media: 6.191992
-Mediana: 6.27382
-Moda: 6.309918
-Varianza: 0.4741052
-Desviación estándar: 0.688553
-IQR: 0.789774
+- Media: 6.191992
+- Mediana: 6.27382
+- Moda: 6.309918
+- Varianza: 0.4741052
+- Desviación estándar: 0.688553
+- IQR: 0.789774
 
+Se realizaron también las medidas de forma, mediante la función skewness y kurtosis. 
+La distribución de los datos se asemeja a una distribución normal con sesgo a la izquierda. Sus medidas de tendencia central se ordenan de la siguiente manera:
+  Media < Mediana < Moda
+DUDA:Con la desviación estándar sd= 0.688 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  sesgo a la izquierda forma leptocúrtica"
+
+```
+s1 <- skewness(ln_als)  #Sesgo
+s1 # Presenta sesgo a la izquierda
+c1 <- kurtosis(ln_als)  #Curtosis 
+c1  #Presenta forma letpocúrtica
+```
+
+Se realizó el mismo análisis para la variable de "Logaritmo natural de gasto en alimentos no saludables". Haciendo primero el histograma y calculando las 
+medidas de tendencia central y de dispersión:
+
+```
+hist(df.limpio$ln_alns, prob=T, main="Logaritmo natural de Gastos en alimentos no saludables",  xlab="ln de Gastos en alimentos saludables")
+"Medidad de tendencia central"
+mean(ln_alns)   #Media
+median(ln_alns) #Mediana
+Mode(ln_alns)   #Moda
+
+"Medidas de dispersión"
+var(ln_alns)  #Varianza
+sd(ln_alns)   #Desviación estándar
+IQR(ln_alns)  #Dispersión alrededor de la media
+
+"Medidas de forma"
+s1 <- skewness(ln_alns)  #Sesgo
+s1 # Presenta un ligero sesgo a la derecha
+c1 <- kurtosis(ln_alns)  #Curtosis 
+c1  #Presenta forma aproximadamente mesocúrtica
+```
+Arrojando los siguientes resultados:
+- Media: 4.118845
+- Mediana: 4.007333
+- Moda: 3.401197
+- Varianza: 1.084671
+- Desviación estándar: 1.041476
+- IQR: 1.466337
+
+Se observa que para dicha variable, la distribución de los datos se asemeja a una distribución normal con sesgo a la derecha.Sus medidas de tendencia central se ordenan de la siguiente manera:
+Media  =  Mediana  = Moda
+Con la desviación estándar sd= 1.04 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  un pequeño sesgo a la derecha y forma mesocúrtica" 
