@@ -34,3 +34,22 @@ df <- read.csv("https://raw.githubusercontent.com/beduExpert/Programacion-R-Sant
 6. Escribe tu análisis en un archivo README.MD y tu código en un script de R y publica ambos en un repositorio de Github.
 
 NOTA: Todo tu planteamiento deberá estár correctamente desarrollado y deberás analizar e interpretar todos tus resultados para poder dar una conclusión final al problema planteado.
+
+DESARROLLO DEL POSTWORK
+
+1. Plantea el problema del caso
+
+En primer lugar se cargó la base de datos usando el comando read.csv, y se le llamó DF. Al observar la base de datos nos percatamos de que había datos 
+faltantes o NA en varias filas, por lo que se tomó la decisión de utilizar la función complete.cases para que regresara el vector indicando cuántos estaban completos. De las 40,809 observaciones solamente 20,280 estaban completas, y dado que varias de las columnas contenían datos categóricos, por lo que no resultaba
+viable sustituir los valores NA con la media o la mediana, se tomó la decisión de utilizar como base de datos para realizar el análisis los datos completos.
+Esta nueva base de datos filtrada, se llama df.limpio. Con esto se completó el primer paso de limpieza de datos.
+```
+df <- read.csv("https://raw.githubusercontent.com/beduExpert/Programacion-R-Santander-2022/main/Sesion-08/Postwork/inseguridad_alimentaria_bedu.csv")
+sum(complete.cases(df))
+df.limpio <- df[complete.cases(df),]
+```
+Después se verificó el tipo de las 10 variables que contenía la base de datos mediante la función str. Del total de variables, 8 eran de tipo int, y las 2
+restantes de tipo num. Sin embargo, al analizar el tipo de datos, se procedió a realizar la reclasificación de las siguientes variables: 
+
+2. 
+
