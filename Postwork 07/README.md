@@ -13,7 +13,7 @@ Global <- scan(url, sep="")
 Global.ts <- ts(Global, st = c(1856, 1), fr = 12)
 ```
 
-2. Realiza una gráfica de la serie de tiempo anteriorde 2005"
+2. Realiza una gráfica de la serie de tiempo anterior de 2005"
 > La temperatura se mantuvo constante hasta 1950 a partir de alli ha aumentado en promedio 0.7 grados a 2006
 ```R
 plot(Global.ts, xlab = "Tiempo", ylab = "Temperatura en grados Celsius", 
@@ -21,6 +21,7 @@ plot(Global.ts, xlab = "Tiempo", ylab = "Temperatura en grados Celsius",
      sub = "Serie mensual: Ene/1856 a Dic/2006")
 
 ```
+![Serie de tiempo](./serie_tiempo.png)
 3. Ahora realiza una gráfica de la serie de tiempo anterior, transformando a la primera diferencia:
 > Transformando primera diferencia: diff(Global.ts)
 ```R
@@ -29,6 +30,7 @@ title(main = "Temperatura Global",
       xlab = "Tiempo", ylab = "Dif Serie",
       sub = "Diferencia de primer órden")
 ```
+![Serie de tiempo 1a diff](./serie_tiempo_1a_diff.png)
 4. ¿Consideras que la serie es estacionaria en niveles o en primera diferencia?
 > Si es estacionaria a partir de la primera diferencia y a partir del año 1900 
 5. Con base en tu respuesta anterior, obten las funciones de autocorrelación y autocorrelación parcial?
@@ -36,7 +38,9 @@ title(main = "Temperatura Global",
 ```R
 acf(diff(Global.ts))
 ```
+![Autocorrelación](./autocorrelacion.png)
 > Función de autocorrelación Parcial
 ```R
 pacf(diff(Global.ts))
 ```
+![Autocorrelación parcial](./autocorrelacion_parcial.png)
