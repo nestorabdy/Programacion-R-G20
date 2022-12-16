@@ -137,3 +137,113 @@ Arrojando los siguientes resultados:
 Se observa que para dicha variable, la distribución de los datos se asemeja a una distribución normal con sesgo a la derecha.Sus medidas de tendencia central se ordenan de la siguiente manera:
 Media  =  Mediana  = Moda
 Con la desviación estándar sd= 1.04 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  un pequeño sesgo a la derecha y forma mesocúrtica" 
+
+Para ahondar en el análisis de los datos, se realizó una gráfica Boxplot, por nivel socioeconómico y seguridad alimentaria, tomando como eje Y el gasto en alimentos
+saludables.
+
+```
+ggplot(df.limpio, aes(x=nse5f, y=ln_als, fill=IA))+
+  geom_boxplot()+
+  labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos saludables")+
+  theme_classic()
+  
+```
+Se realizó lo mismo tomando como eje Y el gasto en alimentos no saludables.
+```
+ggplot(df.limpio, aes(x=nse5f, y=ln_alns, fill=IA))+
+  geom_boxplot()+
+  labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos no saludables")+
+  theme_classic()
+```
+Observamos en esta gráfica que la IA varía muy poco entre su mismo nivel socioeconómico.
+Observamos en esta gráfica que la IA varia muy poco entre su mismo nivel socioeconómico, además a diferencia del gasto en alimentos saludables esta clasificació presenta un IQR mas amplio.
+
+Se realizó también una tabla resumen para observar la media, la mediana, la desviación estándar y el número de observaciones, según el nivel socioeconómico y
+si presenta o no inseguridad alimentaria:
+```
+"Tablas resumen"
+resumen.df.1 <- df.limpio %>%
+  group_by(nse5f,IA) %>%
+  summarize(mean_m = mean(ln_als),
+            mediana_m=median(ln_als),
+            sd_m = sd(ln_als),
+            mean_m = mean(ln_alns),
+            mediana_m=median(ln_alns),
+            sd_m = sd(ln_alns),
+            n = n())
+resumen.df.1
+```
+
+Se realizó también una gráfica Boxplot, por nivel socioeconómico y sexo del jefe de familia, tomando como eje Y el gasto en alimentos saludables, y una segunda
+tomando como eje Y el gasto en alimentos no saludables. Se desarrolló también una tabla resumen sobre este análisis. 
+
+```
+ggplot(df.limpio, aes(x=nse5f, y=ln_als, fill=sexojef))+
+  geom_boxplot()+
+  labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos saludables")+
+  theme_classic()
+
+
+ggplot(df.limpio, aes(x=nse5f, y=ln_alns, fill=sexojef))+
+  geom_boxplot()+
+  labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos no saludables")+
+  theme_classic()
+
+"Tablas resumen"
+resumen.df.2 <- df.limpio %>%
+  group_by(nse5f,sexojef) %>%
+  summarize(mean_m = mean(ln_als),
+            mediana_m=median(ln_als),
+            sd_m = sd(ln_als),
+            mean_m = mean(ln_alns),
+            mediana_m=median(ln_alns),
+            sd_m = sd(ln_alns),
+            n = n())
+resumen.df.2
+```
+Concluyendo que en estos boxplots no existe mucha diferencia a la clasificación por IA, el comportamiento es muy similar.
+
+Después se realizó un análisis gráfico de Inseguridad alimentaria y Sexo del Jefe de Familia.
+
+```
+ggplot(df.limpio, aes(x=IA, y=ln_als, fill=sexojef))+
+  geom_boxplot()+
+  labs( x = "Insuficiencia alimentaria", y = "Ln de gasto de alimentos saludables")+
+  theme_classic()
+
+ggplot(df.limpio, aes(x=IA, y=ln_alns, fill=sexojef))+
+  geom_boxplot()+
+  labs( x = "Insuficiencia alimentaria", y = "Ln de gasto de alimentos no saludables")+
+  theme_classic()
+  
+"Tablas resumen"
+resumen.df.3 <- df.limpio %>%
+  group_by(IA,sexojef) %>%
+  summarize(mean_m = mean(ln_als),
+            mediana_m=median(ln_als),
+            sd_m = sd(ln_als),
+            mean_m = mean(ln_alns),
+            mediana_m=median(ln_alns),
+            sd_m = sd(ln_alns),
+            n = n())
+resumen.df.3  
+```
+En la primera se puede observar que no hay muchas diferencias entre las diferentes categorias
+Mientras que en la segunda podemos observar que las mujeres jefas de familia gastan menos en alimentos no saludables, mienstras que el gasto en alimentos saludables
+es muy similar al de los hombres.
+
+3. CÁLCULO DE PROBABILIDADES PARA ENTENDER EL PROBLEMA EN MÉXICO
+
+4. MODELO DE REGRESIÓN PARA IDENTIFICAR LAS DETERMINANTES DE LA SITUACIÓN ALIMENTARIA EN MÉXICO
+
+
+
+
+
+
+
+
+
+
+
+
