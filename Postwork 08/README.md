@@ -39,16 +39,14 @@ NOTA: Todo tu planteamiento deberá estár correctamente desarrollado y deberás
 
 ## 1. PLANTEAMIENTO DEL PROBLEMA
 
-En primer lugar se cargó la base de datos usando el comando read.csv, y se le llamó DF. Al observar la base de datos nos percatamos de que había datos 
-faltantes o NA en varias filas, por lo que se tomó la decisión de utilizar la función complete.cases para que regresara el vector indicando cuántos estaban completos. De las 40,809 observaciones solamente 20,280 estaban completas, y dado que varias de las columnas contenían datos categóricos, por lo que no resultaba
-viable sustituir los valores NA con la media o la mediana, se tomó la decisión de utilizar como base de datos para realizar el análisis los datos completos.
-Esta nueva base de datos filtrada, se llama df.limpio. Con esto se completó el primer paso de limpieza de datos.
+A pesar de tener toda la descripción de lo que podiamos encontrar en el dataframe nos era muy necesario analizar los datos para ello en primer lugar se cargaron los datos usando el comando read.csv, y se almacenó en una variable de nombre DF (DataFrame). Al observar la base de datos nos percatamos de que había datos faltantes (con valores NA) en varias filas y en diferentes columnas, teníamos dos opciones la primera de ellas era tomar la media o mediana del resto de los valores y sustituir los NA por el valor obtenido (media o mediana) dado que varias de las columnas contenían datos categóricos no resultaba viable sustituir de este modo los NA, la segunda opción era usar na.omit o complete.cases y dado que complete.cases devuelve un vector lógico que indica que casos están completos y na.omit devuelve el objeto con eliminación en lista de los valores faltantes decidimos utilizar la función complete.cases para obtener el vector indicando cuántos casos estaban completos. De las 40,809 observaciones solamente 20,280 estaban completas, de este modo obtuvimos un dataset de datos completos para realizar el análisis el cual corresponde a una muestra representativa del 49.69% de los casos iniciales.
+Esta nueva base de datos filtrada, se le llamó df.limpio. Con esto se completó el primer paso de limpieza de datos.
 ```
 df <- read.csv("https://raw.githubusercontent.com/beduExpert/Programacion-R-Santander-2022/main/Sesion-08/Postwork/inseguridad_alimentaria_bedu.csv")
 sum(complete.cases(df))
 df.limpio <- df[complete.cases(df),]
 ```
-Después se verificó el tipo de las 10 variables que contenía la base de datos mediante la función str. Del total de variables, 8 eran de tipo int, y las 2
+Posteriormente se verificó el tipo de dato de las 10 variables que contenía el dataframe mediante la función str. Del total de variables, 8 eran de tipo int, y las 2
 restantes de tipo num. Sin embargo, al analizar el tipo de datos, se procedió a realizar la reclasificación de las siguientes variables: nivel socioeconómico 
 (nse5f) sustituyendo los números por las categorías "Bajo", "Medio Bajo", "Medio", "Medio Alto", y "Alto"; zona geográfica (area) sustituyendo los números
 por las categorías "Zona urbana" y "Zona Rural"; recursos financieros distintos al ingreso laboral (refin), sustiyendo según los valores boleanos "No" y "Si"; sexo
@@ -63,6 +61,7 @@ df.limpio$area <- factor(df.limpio$area,labels =c("Urbana","Rural"))
 df.limpio$refin <- factor(df.limpio$refin,labels =c("No","Si"))
 str(df.limpio)
 ```
+Con ello tenemos un dataframe completamente limpio y suficientemente legible para poder hacer los siguientes análisis y que los resultados obtenidos sean mucho más fáciles de interpretar.
 
 ## 2. ANÁLISIS DESCRIPTIVO DE LA INFORMACIÓN
 
