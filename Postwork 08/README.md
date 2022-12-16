@@ -35,9 +35,9 @@ df <- read.csv("https://raw.githubusercontent.com/beduExpert/Programacion-R-Sant
 
 NOTA: Todo tu planteamiento deberá estár correctamente desarrollado y deberás analizar e interpretar todos tus resultados para poder dar una conclusión final al problema planteado.
 
-DESARROLLO DEL POSTWORK
+# DESARROLLO DEL POSTWORK
 
-1. Planteamiento del problema del caso
+## 1. PLANTEAMIENTO DEL PROBLEMA
 
 En primer lugar se cargó la base de datos usando el comando read.csv, y se le llamó DF. Al observar la base de datos nos percatamos de que había datos 
 faltantes o NA en varias filas, por lo que se tomó la decisión de utilizar la función complete.cases para que regresara el vector indicando cuántos estaban completos. De las 40,809 observaciones solamente 20,280 estaban completas, y dado que varias de las columnas contenían datos categóricos, por lo que no resultaba
@@ -64,7 +64,7 @@ df.limpio$refin <- factor(df.limpio$refin,labels =c("No","Si"))
 str(df.limpio)
 ```
 
-2. Análisis descriptivo de la información
+## 2. ANÁLISIS DESCRIPTIVO DE LA INFORMACIÓN
 
 Para la variable de "Logaritmo natural de Gasto en alimentos saludables" se realizó en primer lugar un Histograma de densidad, para ver la distribución de 
 los datos.
@@ -232,9 +232,10 @@ En la primera se puede observar que no hay muchas diferencias entre las diferent
 Mientras que en la segunda podemos observar que las mujeres jefas de familia gastan menos en alimentos no saludables, mienstras que el gasto en alimentos saludables
 es muy similar al de los hombres.
 
-3. CÁLCULO DE PROBABILIDADES PARA ENTENDER EL PROBLEMA EN MÉXICO
+## 3. CÁLCULO DE PROBABILIDADES PARA ENTENDER EL PROBLEMA EN MÉXICO
 
-4. MODELO DE REGRESIÓN PARA IDENTIFICAR LAS DETERMINANTES DE LA SITUACIÓN ALIMENTARIA EN MÉXICO
+
+## 4. MODELO DE REGRESIÓN PARA IDENTIFICAR LAS DETERMINANTES DE LA SITUACIÓN ALIMENTARIA EN MÉXICO
 
 
 
