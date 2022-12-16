@@ -53,13 +53,13 @@ df.limpio$refin <- factor(df.limpio$refin,labels =c("No","Si"))
 attach(df.limpio)
 
 
-
+######################### 2  #################################################
 # Análisis de datos 
 
 ## Logaritmo natural de Gasto en alimentos saludables
 "Histograma de densidad"
-hist(df.limpio$ln_als, prob=T, main="Logaritmo natural de Gasto en alimentos saludables", xlab="ln de Gastos en alimentos saludables")
-x <- seq(min(df.limpio$ln_als), max(df.limpio$ln_als), length = 80)
+hist(df$ln_als, prob=T, main="Logaritmo natural de Gasto en alimentos saludables", xlab="ln de Gastos en alimentos saludables")
+x <- seq(min(df$ln_als), max(df$ln_als), length = 80)
 f <- dnorm(x, mean = mean(df$ln_als), sd = sd(df$ln_als))
 lines(x, f, col = "red", lwd = 2)
 
@@ -79,10 +79,18 @@ s1 # Presenta sesgo a la izquierda
 c1 <- kurtosis(ln_als)  #Curtosis 
 c1  #Presenta forma letpocúrtica
 
-## Logaritmo natural de Gasto en alimentos No saludables
-hist(df.limpio$ln_alns, prob=T, main="Logaritmo natural de Gastos en alimentos no saludables", , xlab="ln de Gastos en alimentos saludables")
-x <- seq(min(df.limpio$ln_alns), max(df.limpio$ln_alns), length = 80)
-f <- dnorm(x, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns))
+####
+"La distribución de los datos se asemeja a una distribución normal con sesgo a la izquierda.
+Sus medidas de tendencia central se ordenan de la siguiente manera:
+  Media < Mediana < Moda
+Con la desviación estándar sd= 1.04 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  sesgo a la izquierda forma leptocúrtica"
+
+
+
+## Logaritmo natural de Gasto en alimentos saludables
+hist(df$ln_alns, prob=T, main="Logaritmo natural de Gastos en alimentos no saludables",  xlab="ln de Gastos en alimentos saludables")
+x <- seq(min(df$ln_alns), max(df$ln_alns), length = 80)
+f <- dnorm(x, mean = mean(df$ln_alns), sd = sd(df$ln_alns))
 lines(x, f, col = "red", lwd = 2)
 
 "Medidad de tendencia central"
@@ -101,12 +109,22 @@ s1 # Presenta un ligero sesgo a la derecha
 c1 <- kurtosis(ln_alns)  #Curtosis 
 c1  #Presenta forma aproximadamente mesocúrtica
 
+###
+"La distribución de los datos se asemeja a una distribución normal con sesgo a la derecha.
+Sus medidas de tendencia central se ordenan de la siguiente manera:
+Media  =  Mediana  = Moda
+Con la desviación estándar sd= 1.04 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  un pequeño sesgo a la derecha y forma mesocúrtica" 
+
+
 # Boxplots
 ## Boxplot por nivel socioeconómico e Inseguridad alimentaria
 ggplot(df.limpio, aes(x=nse5f, y=ln_als, fill=IA))+
   geom_boxplot()+
   labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos saludables")+
   theme_classic()
+
+###
+"Observamos en esta gráfica que la IA varia muy poco entre su mismo nivel socioeconómico"
 
 
 ggplot(df.limpio, aes(x=nse5f, y=ln_alns, fill=IA))+
@@ -125,6 +143,9 @@ resumen.df.1 <- df.limpio %>%
             sd_m = sd(ln_alns),
             n = n())
 resumen.df.1
+
+"Observamos en esta gráfica que la IA varia muy poco entre su mismo nivel socioeconómico, además a diferencia del 
+gasto en alimentos saludables esta clasificacion presnta un IQR mas amplio"
 
 ## Boxplot por nivel socioeconómico y sexo del jefe de familia
 ggplot(df.limpio, aes(x=nse5f, y=ln_als, fill=sexojef))+
@@ -150,17 +171,24 @@ resumen.df.2 <- df.limpio %>%
             n = n())
 resumen.df.2
 
+### 
+"En estos boxplots no existe mucha diferencia a la clasificacion por IA, el comportamiento es muy similar. "
+
 ## Boxplot por Inseguridad alimentaria y sexo del jefe de familia
 ggplot(df.limpio, aes(x=IA, y=ln_als, fill=sexojef))+
   geom_boxplot()+
   labs( x = "Insuficiencia alimentaria", y = "Ln de gasto de alimentos saludables")+
   theme_classic()
 
+"No hay muchas diferencias entre las diferentes categorias"
 
 ggplot(df.limpio, aes(x=IA, y=ln_alns, fill=sexojef))+
   geom_boxplot()+
   labs( x = "Insuficiencia alimentaria", y = "Ln de gasto de alimentos no saludables")+
   theme_classic()
+
+### 
+"Podemos observar que las mujeres jefas de familia gastan menos en alimentos no saludables, mienstras que el gasto en alimentos saludables es muy similar al de los hombres"
 
 "Tablas resumen"
 resumen.df.3 <- df.limpio %>%
@@ -174,6 +202,8 @@ resumen.df.3 <- df.limpio %>%
             n = n())
 resumen.df.3
 
+######################### 3  #################################################
+
 #3Probabilidad de presentar IA
 t<-table(IA)
 t
@@ -186,13 +216,96 @@ barplot(table(IA)/length(IA),
         xlab = "Resultado",
         names = c("NO Presenta IA", "Presenta IA"))
 
+######################### 4 #################################################
 
+"Pruebas de hipotesis"
+"1. Se empleo un nivel de confianza del 99%"
+"En promedio el ln de gasto en alimentos saludables es en hogares con recursos financieros extras es mayor que en hogares que no lo tienen"
+# Ho: promedio_ln_als (refin==Si) <= promedio_ln_als (refin==No)
+# Ha: promedio_ln_als (refin==Si) > promedio_ln_als (refin==No)
+
+var.test(df.limpio[df.limpio$refin == "Si", "ln_als"], 
+         df.limpio[df.limpio$refin == "No", "ln_als"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.99)
+
+#p-value = 0.01147 > 0.01 (99% NC)
+
+t.test(df.limpio[df.limpio$refin == "Si", "ln_als"],
+       df.limpio[df.limpio$refin == "No", "ln_als"],
+       alternative = "greater",conf.level = 0.99, mu = 0, var.equal = TRUE,)
+
+# Con un p-value =3.119e-08 < 0.01 (99% NC). EEE para rechazar Ho
+# Es decir el promedio del gastos en alimentos saludables por hogares con recursos financieros extras no es mayor a los que si lo tienen
+
+
+
+
+"2. En promedio el gasto en alimentos no saludables es en hogares con una mujer como jefe de familia es menor que en hogares cuya jefe de familia es hombre con un 90%"
+# Ho: promedio_ln_alns (sexojef==mujer) >= promedio_ln_als (sexojef==Hombre)
+# Ha: promedio_ln_alns (sexojef==mujer) < promedio_ln_als (sexojef==Hombre)
+
+var.test(df.limpio[df.limpio$sexojef == "Mujer", "ln_alns"], 
+         df.limpio[df.limpio$sexojef == "Hombre", "ln_alns"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.90)
+
+#p-value = 0.377 > 0.1 (90% NC)
+
+t.test(df.limpio[df.limpio$sexojef == "Mujer", "ln_alns"],
+       df.limpio[df.limpio$sexojef == "Hombre", "ln_alns"],
+       alternative = "less",conf.level = 0.90, mu = 0, var.equal = TRUE,)
+# Con un p-value ~ 2.2e-16 < 0.1 (90% NC). EEE para rechazar Ho
+#  Es decir el promedio del gastos en alimentos no saludables por hogares con jefe de familia mujer no es menor a los hogares que tienen jefe de familia mujer
+
+
+"3. En promedio La mayoría de las personas afirman que los hogares con menor nivel socioeconómico tienden a 
+gastar más en productos no saludables que las personas con mayores niveles socioeconómicos"
+# Ho: promedio_ln_alns (nse5f==("Bajo" | "Medio bajo" ) >= promedio_ln_als (nse5f==("Medio alto" | "Alto" )
+# Ho: promedio_ln_alns (nse5f==("Bajo" | "Medio bajo" ) < promedio_ln_als (nse5f==("Medio alto" | "Alto" )
+var.test(df.limpio[(df.limpio$nse5f == "Bajo" | df.limpio$nse5f == "Medio Bajo"), "ln_alns"], 
+         df.limpio[(df.limpio$nse5f == "Medio Alto" | df.limpio$nse5f == "Alto"), "ln_alns"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.90)
+
+#p-value = 6.199e-13 < 0.1 (90% NC). Las varianzas no son similares
+# No EEE suficiente para evaluar las hipótesis
+
+"4. En promedio el gasto en alimentos saludables en hogares con IA es igual a los que no presentan IA  con un 90%"
+# Ho: promedio_ln_als (IA==sI) == promedio_ln_als (IA==No)
+# Ha: promedio_ln_als (IA==sI) != promedio_ln_als (IA==No)
+
+var.test(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"], 
+         df.limpio[df.limpio$IA == "Presenta IA", "ln_als"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.90)
+
+#p-value =0.3532 > 0.1 (90% NC)
+
+t.test(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"],
+       df.limpio[df.limpio$IA == "Presenta IA", "ln_als"],
+       alternative = "two.sided",conf.level = 0.90, mu = 0, var.equal = TRUE,)
+# Con un p-value < 2.2e-16 < 0.1 (90% NC). EEE para rechazar Ho
+#  Es decir el promedio del gastos en alimentos saludables por hogares con IA no es igual a los hogares que no presnetan IA
+
+
+"5. El promedio para el gasto de alimentos saludables es el mismo para todos los niveles socioeconómicos. Con un nivel de confianza del 90%"
+# Ho: promedio_ln_alns (nse5f==Bajo) == promedio_ln_alns (nse5f==Medio Bajo) == promedio_ln_alns (nse5f==Medio) ...
+# Ha: Al menos un par de promedios del gasto en alimentos saludables en dos niveles socioeconómicos son diferentes
+boxplot(ln_als ~ nse5f, data = df.limpio)
+
+anova <- aov(ln_als ~ nse5f, data = df.limpio)
+summary(anova)
+
+TukeyHSD(anova)
+plot(TukeyHSD(anova))
+
+#p-value <2e-16
+#p-value < 0.1 (90% NC) EEE para rechazar Ho
+"Hemos obtenido un p-valor del orden de 2e-16. Esto nos permite rechazar la hipótesis nula en favor de la hipotesis alternativa 
+y concluir que al menos el promedio del gasto en alimentos saludables de dos niveles socioeconómicos es distinto. 
+La gráfica de diferencias de promedios y el diagrama boxplot apoyan visualmente el rechazo de la hipótesis nula"
+
+######################### 5  #################################################
 
 #5Modelo Regresion Logistica
 logistic.1 <- glm(IA ~ nse5f+ area + numpeho + refin + edadjef + sexojef + 
                     añosedu + ln_als + ln_alns, family = binomial)
 
 summary(logistic.1)
-
-
-
