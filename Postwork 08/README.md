@@ -236,6 +236,101 @@ es muy similar al de los hombres.
 
 ## 4. HIPÓTESIS ESTADÍSTICAS PARA ENTENDER EL PROBLEMA EN MÉXICO
 
+Para entender el problema en México se plantearon las siguientes hipótesis:
+
+- 1. "En promedio el ln de gasto en alimentos saludables es en hogares con recursos financieros extras es mayor que en hogares que no lo tienen". Utilizando 
+confianza del 99%, las hipótesis son:
+
+Ho: promedio_ln_als (refin==Si) <= promedio_ln_als (refin==No)
+Ha: promedio_ln_als (refin==Si) > promedio_ln_als (refin==No)
+
+```
+var.test(df.limpio[df.limpio$refin == "Si", "ln_als"], 
+         df.limpio[df.limpio$refin == "No", "ln_als"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.99)
+```
+Con este análisis se tiene que un p-value=0.01147 > 0.01 (99% NIVEL DE CONFIANZA)
+```
+t.test(df.limpio[df.limpio$refin == "Si", "ln_als"],
+       df.limpio[df.limpio$refin == "No", "ln_als"],
+       alternative = "greater",conf.level = 0.99, mu = 0, var.equal = TRUE,)
+```
+Con un p-value =3.119e-08 < 0.01 (99% NC). EEE para rechazar Ho. Es decir el promedio del gastos en alimentos saludables por hogares con recursos financieros extras
+no es mayor a los que si lo tienen.
+
+- 2. En promedio el gasto en alimentos no saludables es en hogares con una mujer como jefe de familia es menor que en hogares cuya jefe de familia es hombre".
+Utilizando un nivel de confianza de 90%, las hipótesis son:
+
+Ho: promedio_ln_alns (sexojef==mujer) >= promedio_ln_als (sexojef==Hombre)
+Ha: promedio_ln_alns (sexojef==mujer) < promedio_ln_als (sexojef==Hombre)
+```
+var.test(df.limpio[df.limpio$sexojef == "Mujer", "ln_alns"], 
+         df.limpio[df.limpio$sexojef == "Hombre", "ln_alns"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.90)
+```
+Obteniendo un p-value = 0.377 > 0.1 (90% NC)
+```
+t.test(df.limpio[df.limpio$sexojef == "Mujer", "ln_alns"],
+       df.limpio[df.limpio$sexojef == "Hombre", "ln_alns"],
+       alternative = "less",conf.level = 0.90, mu = 0, var.equal = TRUE,)
+ ```
+Con un p-value ~ 2.2e-16 < 0.1 (90% NC). EEE para rechazar Ho. Es decir el promedio del gastos en alimentos no saludables por hogares con jefe de familia mujer no
+es menor a los hogares que tienen jefe de familia mujer.
+
+- 3. En promedio La mayoría de las personas afirman que los hogares con menor nivel socioeconómico tienden a gastar más en productos no saludables que las personas
+con mayores niveles socioeconómicos", utilizando un nivel de confianza de 90%, las hipótesis son:
+
+Ho: promedio_ln_alns (nse5f==("Bajo" | "Medio bajo" ) >= promedio_ln_als (nse5f==("Medio alto" | "Alto" )
+Ho: promedio_ln_alns (nse5f==("Bajo" | "Medio bajo" ) < promedio_ln_als (nse5f==("Medio alto" | "Alto" )
+```
+var.test(df.limpio[(df.limpio$nse5f == "Bajo" | df.limpio$nse5f == "Medio Bajo"), "ln_alns"], 
+         df.limpio[(df.limpio$nse5f == "Medio Alto" | df.limpio$nse5f == "Alto"), "ln_alns"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.90)
+```
+Obteniendo un p-value = 6.199e-13 < 0.1 (90% NC). Las varianzas no son similares. No EEE suficiente para evaluar las hipótesis.
+
+- 4. En promedio el gasto en alimentos saludables en hogares con IA es igual a los que no presentan IA. Con un nivel de confianza de 90% las hipótesis son:
+
+Ho: promedio_ln_als (IA==sI) == promedio_ln_als (IA==No)
+Ha: promedio_ln_als (IA==sI) != promedio_ln_als (IA==No)
+
+```
+var.test(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"], 
+         df.limpio[df.limpio$IA == "Presenta IA", "ln_als"], 
+         ratio = 1, alternative = "two.sided",conf.level = 0.90)
+```
+Obteniendo un p-value =0.3532 > 0.1 (90% NC)
+```
+t.test(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"],
+       df.limpio[df.limpio$IA == "Presenta IA", "ln_als"],
+       alternative = "two.sided",conf.level = 0.90, mu = 0, var.equal = TRUE,)
+```
+Con un p-value < 2.2e-16 < 0.1 (90% NC). EEE para rechazar Ho. Es decir el promedio del gastos en alimentos saludables por hogares con IA no es igual a los hogares
+que no presentan IA.
+
+- 5. El promedio para el gasto de alimentos saludables es el mismo para todos los niveles socioeconómicos. Con un nivel de confianza del 90% se tiene:
+
+Ho: promedio_ln_alns (nse5f==Bajo) == promedio_ln_alns (nse5f==Medio Bajo) == promedio_ln_alns (nse5f==Medio) ...
+Ha: Al menos un par de promedios del gasto en alimentos saludables en dos niveles socioeconómicos son diferentes.
+
+```
+boxplot(ln_als ~ nse5f, data = df.limpio)
+
+anova <- aov(ln_als ~ nse5f, data = df.limpio)
+summary(anova)
+
+TukeyHSD(anova)
+plot(TukeyHSD(anova))
+```
+Con p-value <2e-16
+p-value < 0.1 (90% NC) EEE para rechazar Ho. Hemos obtenido un p-valor del orden de 2e-16. Esto nos permite rechazar la hipótesis nula en favor de la hipotesis 
+alternativa y concluir que al menos el promedio del gasto en alimentos saludables de dos niveles socioeconómicos es distinto. La gráfica de diferencias de promedios
+y el diagrama boxplot apoyan visualmente el rechazo de la hipótesis nula.
+
+```
+summary(logistic.1)
+```
+
 ## 5. MODELO DE REGRESIÓN PARA IDENTIFICAR LAS DETERMINANTES DE LA SITUACIÓN ALIMENTARIA EN MÉXICO
 
 
