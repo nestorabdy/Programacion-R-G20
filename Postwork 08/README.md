@@ -233,7 +233,18 @@ es muy similar al de los hombres.
 
 ## 3. CÁLCULO DE PROBABILIDADES PARA ENTENDER EL PROBLEMA EN MÉXICO
 
+```
+t<-table(IA)
+t
 
+transform(t,
+          rel_freq=prop.table(Freq))
+
+barplot(table(IA)/length(IA), 
+        main = "Relacion Inseguridad Alimentaria de la muestra", 
+        xlab = "Resultado",
+        names = c("NO Presenta IA", "Presenta IA"))
+```
 ## 4. HIPÓTESIS ESTADÍSTICAS PARA ENTENDER EL PROBLEMA EN MÉXICO
 
 Para entender el problema en México se plantearon las siguientes hipótesis:
@@ -370,13 +381,13 @@ round(cor(dfLimpio.select),4)
 
 Obteniendo la siguiente tabla de correlación
 
-"        nse5f numpeho edadjef añosedu  ln_als ln_alns
+        nse5f numpeho edadjef añosedu  ln_als ln_alns
 nse5f   1.0000  0.0495  0.0451  0.4335  0.3566  0.2922
 numpeho 0.0495  1.0000 -0.1140 -0.0435  0.3109  0.0809
 edadjef 0.0451 -0.1140  1.0000 -0.3566 -0.1127 -0.0984
 añosedu 0.4335 -0.0435 -0.3566  1.0000  0.2421  0.2184
 ln_als  0.3566  0.3109 -0.1127  0.2421  1.0000  0.3285
-ln_alns 0.2922  0.0809 -0.0984  0.2184  0.3285  1.0000"
+ln_alns 0.2922  0.0809 -0.0984  0.2184  0.3285  1.0000
 
 Teniendo las siguientes observaciones:
 
@@ -412,7 +423,7 @@ summary(modelo1)
 ```
 Obteniendo: 
 
-"Residuals:
+Residuals:
     Min      1Q  Median      3Q     Max 
 -1.1896 -0.4883  0.1806  0.3145  0.6616 
 Coefficients:
@@ -424,7 +435,7 @@ edadjef     -0.0001502  0.0002240  -0.670    0.503
 añosedu     -0.0103401  0.0007980 -12.958  < 2e-16 ***
 ln_als      -0.0105453  0.0051347  -2.054    0.040 *  
 ln_alns     -0.0218575  0.0031499  -6.939 4.07e-12 ***
----
+
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 Residual standard error: 0.4303 on 20273 degrees of freedom
 Multiple R-squared:  0.09867,	Adjusted R-squared:  0.0984 
