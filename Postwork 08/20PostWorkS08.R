@@ -463,7 +463,7 @@ F-statistic: 369.9 on 6 and 20273 DF,  p-value: < 2.2e-16"
 # Regresión logística
 
 
-logistic.prueba1<-glm(IA ~ nse5f+area+numpeho+refin+edadjef+sexojef+añosedu+ln_als+ln_alns, data=dfLimpio,family = binomial())
+logistic.prueba1<-glm(IA ~ nse5f+area+numpeho+refin+edadjef+sexojef+añosedu+ln_als+ln_alns, data=df.limpio,family = binomial())
 summary(logistic.prueba1)
 exp(coef(logistic.prueba1))
 
@@ -472,12 +472,23 @@ exp(coef(logistic.prueba1))
 "(Intercept)       nse5f        area     numpeho       refin     edadjef     sexojef     añosedu      ln_als     ln_alns 
  19.3437901   0.6896405   0.9021626   1.1907381   1.4887174   1.0003946   1.1678150   0.9472396   0.9131167   0.9021909 "
 
+pseudo_r2.1 <- (logistic.prueba1$null.deviance - logistic.prueba1$deviance)/logistic.prueba1$null.deviance
+pseudo_r2.1
+
+#modelo 2 sin el numero de personas por hogar
+logistic.prueba2<-glm(IA ~ nse5f+area+refin+edadjef+sexojef+añosedu+ln_als+ln_alns, data=df.limpio,family = binomial())
+summary(logistic.prueba1)
+exp(coef(logistic.prueba1))
+
+pseudo_r2.2 <- (logistic.prueba2$null.deviance - logistic.prueba2$deviance)/logistic.prueba2$null.deviance
+pseudo_r2.2
+
 # Se puede interpretar que los recursos financieros distintos al ingreso laboral (refin) tienen más alta probabilidad
 # sobre la Insuficiencia Laboral y el segundo factor es el número de personas en el hogar
 # Se analiza específicamente con el Número de personas
 y<-df$IA
 x<-df$numpeho
-logistic.prueba1<-glm(y ~x,data=dfLimpio, family = binomial())
+logistic.prueba1<-glm(y ~x,data=df.limpio, family = binomial())
 summary(logistic.prueba1)
 exp(coef(logistic.prueba1))
 
@@ -487,10 +498,9 @@ exp(coef(logistic.prueba1))
 1.728377    1.132376 "
 
 " y se genra la gráfica para representar la relación"
-plot(IA ~ numpeho, data=dfLimpio, xlim = c(0,10))
+plot(IA ~ numpeho, data=df.limpio, xlim = c(0,10))
 curve(predict(logistic.prueba1, newdata = data.frame(x), type = "response"),
       add = TRUE)
 
 
 # Se concluye que la Insuficiencia Alimentaria le afecta el Número de personas del hogar
-
