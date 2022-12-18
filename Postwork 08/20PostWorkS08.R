@@ -216,6 +216,74 @@ barplot(table(IA)/length(IA),
         xlab = "Resultado",
         names = c("NO Presenta IA", "Presenta IA"))
 
+"Comparamos 3 gráficas de distribución del Ln de dastos en alimentos saludables.
+La primera de ellas con todos los datos de la muestra
+La segunda usando sólo aquellos datos cuyas familias no presentan Insuficiencia alimentaria
+La tercera gráfica sólo con los datos de cuyas familias si presentan Insufciencia alimentaria
+S conluye que las tres graficas no difieren mucho entre si"
+par(mfrow = c(1, 3))
+curve(dnorm(x, mean = mean(df.limpio$ln_als), sd = sd(df.limpio$ln_als)), from=2, to=10, col='blue', main = "Distribución \n teórica ln_als \n Global", ylab = "f(x)", xlab = "X")
+curve(dnorm(x, mean = mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"])), from=2, to=10, col='blue', main = "Distribución \n teórica ln_als \n NO presenta IA", ylab = "f(x)", xlab = "X")
+curve(dnorm(x, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"])), from=2, to=10, col='blue', main = "Distribución \n teórica ln_als \n Presenta IA", ylab = "f(x)", xlab = "X")
+dev.off()
+
+"Comparamos 3 gráficas de distribución del Ln de dastos en alimentos No saludables.
+La primera de ellas con todos los datos de la muestra
+La segunda usando sólo aquellos datos cuyas familias no presentan Insuficiencia alimentaria
+La tercera gráfica sólo con los datos de cuyas familias si presentan Insufciencia alimentaria
+S conluye que las tres graficas no difieren mucho entre si"
+par(mfrow = c(1, 3))
+curve(dnorm(x, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns)), from=0, to=8, col='blue', main = "Distribución \n teórica ln_alns \n Global", ylab = "f(x)", xlab = "X")
+curve(dnorm(x, mean = mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_alns"]), sd = sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_alns"])), from=0, to=8, col='blue', main = "Distribución \n teórica ln_alns \n NO presenta IA", ylab = "f(x)", xlab = "X")
+curve(dnorm(x, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"])), from=0, to=8, col='blue', main = "Distribución \n teórica ln_alns \n Presenta IA", ylab = "f(x)", xlab = "X")
+dev.off()
+
+
+
+#¿Cuál es la probabilidad de que el ln de gastos en alimentos saludables sea mayor a 7?
+pnorm(q = 7, mean = mean(df.limpio$ln_als), sd(df.limpio$ln_als),lower.tail = FALSE)
+x1 <- seq(-4, 4, 0.01)*sd(df.limpio$ln_als) + mean(df.limpio$ln_als)
+y1 <- dnorm(x1, mean =  mean(df.limpio$ln_als), sd=sd(df.limpio$ln_als))
+plot(x1, y1, type = "l", xlab = "", ylab = "")
+title(main = "Densidad de Probabilidad Normal \n Ln de gasto en alimentos saludables")
+polygon(c(7, x1[x1>=7], max(x1)), c(0, y1[x1>=7], 0), col="blue")
+
+#¿Cuál es la probabilidad de que el ln de gastos en alimentos saludables sea menor a 5.5 en familias que presentan IA?
+pnorm(q = 5.5, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]),lower.tail = TRUE)
+x1 <- seq(-4, 4, 0.01)*sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]) + mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"])
+y1 <- dnorm(x1, mean =  mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]))
+plot(x1, y1, type = "l", xlab = "", ylab = "")
+title(main = "Densidad de Probabilidad Normal \n Ln de gasto en alimentos saludables \n Hogares que presentan IA")
+polygon(c(min(x1), x1[x1<=5.5], 5.5), c(0, y1[x1<=5.5], 0), col="red")
+
+#¿Cuál es la probabilidad de que el ln de gastos en alimentos saludables en familias que NO presentan IA esté entre 5 y 7.5?
+pnorm(q = 7.5, mean = mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]))-pnorm(q = 5, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]),lower.tail = TRUE)
+x1 <- seq(-4, 4, 0.01)*sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]) + mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"])
+y1 <- dnorm(x1, mean =  mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]), sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]))
+plot(x1, y1, type = "l", xlab="", ylab="")
+title(main = "Densidad de Probabilidad Normal \n Ln de gasto en alimentos saludables \n Hogares que NO presentan IA")
+polygon(c(5, x1[x1>=5 & x1<=7.5], 7.5), c(0, y1[x1>=5 & x1<=7.5], 0), col="green")
+
+#Con una probabilidad de 0.4, ¿cuál es el total del ln de gastos en alimentos No saludables en familias que presentan IA que se puede esperar?
+c <-qnorm(p = 0.4, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]))
+
+c
+x1 <- seq(-4, 4, 0.01)*sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]) + mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"])
+y1 <- dnorm(x4, mean =  mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]), sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]))
+plot(x1, y1, type = "l", xlab = "", ylab = "")
+title(main = "Densidad de Probabilidad Normal \n Ln de gasto en alimentos NO saludables \n Hogares que presentan IA")
+polygon(c(min(x1), x1[x1<=c], c), c(0, y1[x1<=c], 0), col="magenta")
+
+#¿Cuáles son los valores del ln de gastos en alimentos no saludables que dejan exactamente en el centro el 60% de probabilidad?
+a<-qnorm(p = 0.2/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns)); b<-qnorm(p = 0.2/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns), lower.tail = FALSE)
+a
+b
+x1 <- seq(-4, 4, 0.01)*sd(df.limpio$ln_alns) + mean(df.limpio$ln_alns)
+y1 <- dnorm(x5, mean =  mean(df.limpio$ln_alns), sd=sd(df.limpio$ln_alns))
+plot(x1, y1, type = "l", xlab = "", ylab = "")
+title(main = "Densidad de Probabilidad Normal \n Ln de gasto en alimentos NO saludables")
+polygon(c(a, x1[x1>=a & x1<=b], b), c(0, y1[x1>=a & x1<=b], 0), col="yellow")
+
 ######################### 4 #################################################
 
 "Pruebas de hipotesis"
