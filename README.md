@@ -1,4 +1,4 @@
-# Estadítica y programación en R
+# Estadística y programación en R
 Equipo 20
 - Doníz Padilla Brenda Grisel
 - García Fragoso Nestor Abdy
