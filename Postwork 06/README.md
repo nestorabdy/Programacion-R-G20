@@ -151,3 +151,4 @@ W = 0.97535, p-value = 0.001365"
 > Con el valor de pValue de 0.001365 se rechaza Ho por lo tanto no distribuye como una normal para una significancia de 0.1, 0.05 y 0.01 y no permite hacer predicciones  
 > Como en el problema no se tienen variables categóricas no se usa un modelo de Regresión Logística
 
+>STOP SPENDING ON NEWSPAPER !
