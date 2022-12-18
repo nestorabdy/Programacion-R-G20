@@ -350,7 +350,7 @@ Resultado
 [1] 3.242317
 [1] 4.995372
 ```
-> Los valores del ln de gastos en alimentos no saludables que dejan exactamente en el centro el 60% de probabilidad, son `a= 3.24` y `b= 4.99 USD`
+> Los valores del ln de gastos en alimentos no saludables que dejan exactamente en el centro el 60% de probabilidad, son `a= 3.24` y `b= 4.99 `
 
 ![Densidades de ln_alns](./Gráficas/grafica_03g_p08.png)
 
