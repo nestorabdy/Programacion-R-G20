@@ -275,7 +275,7 @@ title(main = "Densidad de Probabilidad Normal \n Ln de gasto en alimentos NO sal
 polygon(c(min(x1), x1[x1<=c], c), c(0, y1[x1<=c], 0), col="magenta")
 
 #¿Cuáles son los valores del ln de gastos en alimentos no saludables que dejan exactamente en el centro el 60% de probabilidad?
-a<-qnorm(p = 0.2/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns)); b<-qnorm(p = 0.2/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns), lower.tail = FALSE)
+a<-qnorm(p = 0.4/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns)); b<-qnorm(p = 0.4/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns), lower.tail = FALSE)
 a
 b
 x1 <- seq(-4, 4, 0.01)*sd(df.limpio$ln_alns) + mean(df.limpio$ln_alns)
