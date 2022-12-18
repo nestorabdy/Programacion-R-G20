@@ -3,7 +3,7 @@ Equipo 20
 - Doníz Padilla Brenda Grisel
 - García Fragoso Nestor Abdy
 - Gudiño Ramirez Gustavo
-- Jimenez Paola
+- Jimenez Rodriguez Paola Guadalupe
 - Medina Rodríguez Eduardo
 - Pando Barrón Jésus 
 
