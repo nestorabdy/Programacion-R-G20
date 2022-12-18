@@ -1,5 +1,11 @@
 # Estadítica y programación en R
 Equipo 20
+- Doníz Padilla Brenda Grisel
+- García Fragoso Nestor Abdy
+- Gudiño Ramirez Gustavo
+- Jimenez Paola
+- Medina Rodríguez Eduardo
+- Pando Barrón Jésus 
 
 ## :bookmark_tabs: Postworks del modulo
 - [`Postwork 1` Introducción a R ](./Postwork%2001)
