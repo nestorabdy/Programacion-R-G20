@@ -70,6 +70,9 @@ los datos.
 ```
 hist(df.limpio$ln_als, prob=T, main="Logaritmo natural de Gasto en alimentos saludables", xlab="ln de Gastos en alimentos saludables")
 ```
+
+![Gráfica 01](./Gráficas/grafica_01_p08.png)
+
 Después se procedió a sacar las medidas de tendencia central (media, moda y mediana) de dicha variable, así como las medidas de dispersión (varianza, desviación
 estándar y dispersión alrededor de la media:
 ```
@@ -109,6 +112,9 @@ medidas de tendencia central y de dispersión:
 
 ```
 hist(df.limpio$ln_alns, prob=T, main="Logaritmo natural de Gastos en alimentos no saludables",  xlab="ln de Gastos en alimentos saludables")
+```
+![Gráfica 02](./Gráficas/grafica_02_p08.png)
+```
 "Medidad de tendencia central"
 mean(ln_alns)   #Media
 median(ln_alns) #Mediana
@@ -147,6 +153,8 @@ ggplot(df.limpio, aes(x=nse5f, y=ln_als, fill=IA))+
   theme_classic()
   
 ```
+![Gráfica 03](./Gráficas/grafica_03_p08.png)
+
 Se realizó lo mismo tomando como eje Y el gasto en alimentos no saludables.
 ```
 ggplot(df.limpio, aes(x=nse5f, y=ln_alns, fill=IA))+
@@ -154,6 +162,9 @@ ggplot(df.limpio, aes(x=nse5f, y=ln_alns, fill=IA))+
   labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos no saludables")+
   theme_classic()
 ```
+
+![Gráfica 04](./Gráficas/grafica_04_p08.png)
+
 Observamos en esta gráfica que la IA varía muy poco entre su mismo nivel socioeconómico.
 Observamos en esta gráfica que la IA varia muy poco entre su mismo nivel socioeconómico, además a diferencia del gasto en alimentos saludables esta clasificació presenta un IQR mas amplio.
 
@@ -181,13 +192,16 @@ ggplot(df.limpio, aes(x=nse5f, y=ln_als, fill=sexojef))+
   geom_boxplot()+
   labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos saludables")+
   theme_classic()
-
-
+```  
+  ![Gráfica 05](./Gráficas/grafica_05_p08.png)
+```
 ggplot(df.limpio, aes(x=nse5f, y=ln_alns, fill=sexojef))+
   geom_boxplot()+
   labs( x = "Nivel socioeconómico", y = "Ln de gasto de alimentos no saludables")+
   theme_classic()
-
+```
+![Gráfica 06](./Gráficas/grafica_06_p08.png)
+```
 "Tablas resumen"
 resumen.df.2 <- df.limpio %>%
   group_by(nse5f,sexojef) %>%
@@ -209,12 +223,16 @@ ggplot(df.limpio, aes(x=IA, y=ln_als, fill=sexojef))+
   geom_boxplot()+
   labs( x = "Insuficiencia alimentaria", y = "Ln de gasto de alimentos saludables")+
   theme_classic()
-
+```  
+ ![Gráfica 07](./Gráficas/grafica_07_p08.png)
+```
 ggplot(df.limpio, aes(x=IA, y=ln_alns, fill=sexojef))+
   geom_boxplot()+
   labs( x = "Insuficiencia alimentaria", y = "Ln de gasto de alimentos no saludables")+
   theme_classic()
-  
+```  
+![Gráfica 08](./Gráficas/grafica_08_p08.png)
+```  
 "Tablas resumen"
 resumen.df.3 <- df.limpio %>%
   group_by(IA,sexojef) %>%
@@ -245,6 +263,8 @@ barplot(table(IA)/length(IA),
         xlab = "Resultado",
         names = c("NO Presenta IA", "Presenta IA"))
 ```
+![Gráfica 09](./Gráficas/grafica_09_p08.png)
+
 ## 4. HIPÓTESIS ESTADÍSTICAS PARA ENTENDER EL PROBLEMA EN MÉXICO
 
 Para entender el problema en México se plantearon las siguientes hipótesis:
@@ -326,34 +346,37 @@ Ha: Al menos un par de promedios del gasto en alimentos saludables en dos nivele
 
 ```
 boxplot(ln_als ~ nse5f, data = df.limpio)
+```
+![Gráfica 10](./Gráficas/grafica_10_p08.png)
 
+```
 anova <- aov(ln_als ~ nse5f, data = df.limpio)
 summary(anova)
 
 TukeyHSD(anova)
 plot(TukeyHSD(anova))
 ```
+![Gráfica 11](./Gráficas/grafica_11_p08.png)
+
 Con p-value <2e-16
 p-value < 0.1 (90% NC) EEE para rechazar Ho. Hemos obtenido un p-valor del orden de 2e-16. Esto nos permite rechazar la hipótesis nula en favor de la hipotesis 
 alternativa y concluir que al menos el promedio del gasto en alimentos saludables de dos niveles socioeconómicos es distinto. La gráfica de diferencias de promedios
 y el diagrama boxplot apoyan visualmente el rechazo de la hipótesis nula.
 
-```
-summary(logistic.1)
-```
 
 ## 5. MODELO DE REGRESIÓN PARA IDENTIFICAR LAS DETERMINANTES DE LA SITUACIÓN ALIMENTARIA EN MÉXICO
 
 
 La primera parte es obtener una matriz de correlación manteniendo IA como variable a comparar:
 
-Se genra una matriz dxe correlación que incluye a IA:
+Se genera una matriz dxe correlación que incluye a IA:
 
 ```
 df.select <- select(df, IA,nse5f, numpeho, edadjef, añosedu, ln_als, ln_alns)
 round(cor(df.select),4)
 ```
 
+```
 "        IA      nse5f    numpeho  dadjef añosedu ln_als  ln_alns
 IA       1.0000 -0.2811  0.0967      NA -0.2114     NA      NA
 nse5f   -0.2811  1.0000  0.0430      NA  0.4262     NA      NA
@@ -362,7 +385,7 @@ edadjef      NA      NA      NA       1      NA     NA      NA
 añosedu -0.2114  0.4262  0.0080      NA  1.0000     NA      NA
 ln_als       NA      NA      NA      NA      NA      1      NA
 ln_alns      NA      NA      NA      NA      NA     NA       1"
-
+```
 
 Partiendo del DataFrame "limpio" o sin datos de "NA" se procede a la generación de una matriz de correlación sin incluir a IA y así comparando con la tabla
 anterior.
@@ -381,6 +404,7 @@ round(cor(dfLimpio.select),4)
 
 Obteniendo la siguiente tabla de correlación
 
+```
         nse5f numpeho edadjef añosedu  ln_als ln_alns
 nse5f   1.0000  0.0495  0.0451  0.4335  0.3566  0.2922
 numpeho 0.0495  1.0000 -0.1140 -0.0435  0.3109  0.0809
@@ -388,6 +412,7 @@ edadjef 0.0451 -0.1140  1.0000 -0.3566 -0.1127 -0.0984
 añosedu 0.4335 -0.0435 -0.3566  1.0000  0.2421  0.2184
 ln_als  0.3566  0.3109 -0.1127  0.2421  1.0000  0.3285
 ln_alns 0.2922  0.0809 -0.0984  0.2184  0.3285  1.0000
+```
 
 Teniendo las siguientes observaciones:
 
@@ -409,10 +434,15 @@ Como son muchos datos se divide en dos presentaciones gráficas:
 ```
 pairs(~ IA+nse5f +ln_als+ln_alns,
       data = dfLimpio, gap = 0.4, cex.labels = 1.5)
+```
+![Gráfica 12](./Gráficas/grafica_12_p08.png)
 
+```
 pairs(~ IA+nse5f+area+numpeho+refin +ln_als+ln_alns,
       data = dfLimpio, gap = 0.4, cex.labels = 1.5)
 ```
+![Gráfica 13](./Gráficas/grafica_13_p08.png)
+
 Estimación del modelo de regresión, lineal o logístico, para identificiar los determinanres de la inseguridad alimentaria en México.
 
 Se inician con modelos de Regresión Lineal:
@@ -423,6 +453,7 @@ summary(modelo1)
 ```
 Obteniendo: 
 
+```
 Residuals:
     Min      1Q  Median      3Q     Max 
 -1.1896 -0.4883  0.1806  0.3145  0.6616 
@@ -440,18 +471,21 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 Residual standard error: 0.4303 on 20273 degrees of freedom
 Multiple R-squared:  0.09867,	Adjusted R-squared:  0.0984 
 F-statistic: 369.9 on 6 and 20273 DF,  p-value: < 2.2e-16"
+```
 
-- Regresión logística
+## Regresión logística
 
 ```
 logistic.prueba1<-glm(IA ~ nse5f+area+numpeho+refin+edadjef+sexojef+añosedu+ln_als+ln_alns, data=dfLimpio,family = binomial())
 summary(logistic.prueba1)
 exp(coef(logistic.prueba1))
 ```
-Mostrando la siguiente tabla"
+Mostrando la siguiente tabla:
 
-"(Intercept)       nse5f        area     numpeho       refin     edadjef     sexojef     añosedu      ln_als     ln_alns 
- 19.3437901   0.6896405   0.9021626   1.1907381   1.4887174   1.0003946   1.1678150   0.9472396   0.9131167   0.9021909 "
+```
+(Intercept)       nse5f        area     numpeho       refin     edadjef     sexojef     añosedu      ln_als     ln_alns 
+ 19.3437901   0.6896405   0.9021626   1.1907381   1.4887174   1.0003946   1.1678150   0.9472396   0.9131167   0.9021909 
+ ```
 
 Se puede interpretar que los recursos financieros distintos al ingreso laboral (refin) tienen más alta probabilidad sobre la Insuficiencia Laboral y el segundo
 factor es el número de personas en el hogar. Se analiza específicamente con el Número de personas:
@@ -468,13 +502,15 @@ Dando los siguiente resultados:
 "(Intercept)           x 
 1.728377    1.132376 "
 
-y se genra la gráfica para representar la relación:
+y se genera la gráfica para representar la relación:
 
 ```
 plot(IA ~ numpeho, data=dfLimpio, xlim = c(0,10))
 curve(predict(logistic.prueba1, newdata = data.frame(x), type = "response"),
       add = TRUE)
 ```
+
+![Gráfica 14](./Gráficas/grafica_14_p08.png)
 
 Considerando lo anterior: Se concluye que la Insuficiencia Alimentaria le afecta el Número de personas del hogar.
 
