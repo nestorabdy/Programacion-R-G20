@@ -71,7 +71,7 @@ los datos.
 hist(df.limpio$ln_als, prob=T, main="Logaritmo natural de Gasto en alimentos saludables", xlab="ln de Gastos en alimentos saludables")
 ```
 
-![Gráfica 01](./Gráficas/grafica_01_p08.png)
+![Gráfica 01](./Gráficas/grafica_01b_p08.png)
 
 Después se procedió a sacar las medidas de tendencia central (media, moda y mediana) de dicha variable, así como las medidas de dispersión (varianza, desviación
 estándar y dispersión alrededor de la media:
@@ -113,7 +113,7 @@ medidas de tendencia central y de dispersión:
 ```
 hist(df.limpio$ln_alns, prob=T, main="Logaritmo natural de Gastos en alimentos no saludables",  xlab="ln de Gastos en alimentos saludables")
 ```
-![Gráfica 02](./Gráficas/grafica_02_p08.png)
+![Gráfica 02](./Gráficas/grafica_02b_p08.png)
 ```
 "Medidad de tendencia central"
 mean(ln_alns)   #Media
@@ -264,6 +264,96 @@ barplot(table(IA)/length(IA),
         names = c("NO Presenta IA", "Presenta IA"))
 ```
 ![Gráfica 09](./Gráficas/grafica_09_p08.png)
+
+ Comparamos 3 gráficas de distribución del Ln de dastos en alimentos saludables.  
+La primera de ellas con todos los datos de la muestra  
+La segunda usando sólo aquellos datos cuyas familias no presentan Insuficiencia alimentaria  
+La tercera gráfica sólo con los datos de cuyas familias si presentan Insufciencia alimentaria  
+Se  conluye que las tres graficas no difieren mucho entre si  
+```R 
+par(mfrow = c(1, 3))
+curve(dnorm(x, mean = mean(df.limpio$ln_als), sd = sd(df.limpio$ln_als)), from=2, to=10, col='blue', main = "Distribución \n teórica ln_als \n Global", ylab = "f(x)", xlab = "X")
+curve(dnorm(x, mean = mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"])), from=2, to=10, col='blue', main = "Distribución \n teórica ln_als \n NO presenta IA", ylab = "f(x)", xlab = "X")
+curve(dnorm(x, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"])), from=2, to=10, col='blue', main = "Distribución \n teórica ln_als \n Presenta IA", ylab = "f(x)", xlab = "X")
+dev.off()
+```
+![Densidades de ln_als](./Gráficas/grafica_03a_p08.png)
+
+Hicimos el mismo ejercicio con el Ln de dastos en alimentos No saludables.  
+La primera de ellas con todos los datos de la muestra  
+La segunda usando sólo aquellos datos cuyas familias no presentan Insuficiencia alimentaria  
+La tercera gráfica sólo con los datos de cuyas familias si presentan Insufciencia alimentaria  
+Se conluye que las tres graficas no difieren mucho entre si  
+
+![Densidades de ln_alns](./Gráficas/grafica_03b_p08.png)
+
+- ¿Cuál es la probabilidad de que el ln de gastos en alimentos saludables sea mayor a 7?
+```R 
+pnorm(q = 7, mean = mean(df.limpio$ln_als), sd(df.limpio$ln_als),lower.tail = FALSE)
+```
+Resultado
+```
+0.1203002
+```
+> La probabilidad de que el ln de gastos en alimentos saludables sea mayor a 7 es `12.03 %`
+
+![Densidades de ln_alns](./Gráficas/grafica_03c_p08.png)
+
+- #¿Cuál es la probabilidad de que el ln de gastos en alimentos saludables sea menor a 5.5 en familias que presentan IA?
+
+```R 
+pnorm(q = 5.5, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]),lower.tail = TRUE)
+```
+Resultado
+```
+0.1707683
+```
+> la probabilidad de que el ln de gastos en alimentos saludables sea menor a 5.5 en familias que presentan IA es del `17.07 %`
+
+![Densidades de ln_alns](./Gráficas/grafica_03d_p08.png)
+
+- ¿Cuál es la probabilidad de que el ln de gastos en alimentos saludables en familias que NO presentan IA esté entre 5 y 7.5?
+```R 
+pnorm(q = 7.5, mean = mean(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "No presenta IA", "ln_als"]))-pnorm(q = 5, mean mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_als"]),lower.tail = TRUE)
+```
+
+Resultado
+```
+0.9132782
+```
+> La probabilidad de que el ln de gastos en alimentos saludables en familias que NO presentan IA esté entre 5 y 7.5 es del `91.32 %`
+
+![Densidades de ln_alns](./Gráficas/grafica_03e_p08.png)
+
+- Con una probabilidad de 0.4, ¿cuál es el total del ln de gastos en alimentos No saludables en familias que presentan IA que se puede esperar?
+
+```R 
+c <-qnorm(p = 0.4, mean = mean(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]), sd = sd(df.limpio[df.limpio$IA == "Presenta IA", "ln_alns"]))
+c
+```
+Resultado
+```
+3.775634
+```
+> Con una probabilidad de 0.4, el total del ln de gastos en alimentos No saludables en familias que presentan IA que se puede esperar es `3.775634`
+
+![Densidades de ln_alns](./Gráficas/grafica_03f_p08.png)
+
+- ¿Cuáles son los valores del ln de gastos en alimentos no saludables que dejan exactamente en el centro el 60% de probabilidad?
+
+```R 
+a<-qnorm(p = 0.4/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns)); b<-qnorm(p = 0.4/2, mean = mean(df.limpio$ln_alns), sd = sd(df.limpio$ln_alns), lower.tail = FALSE)
+a;b
+```
+Resultado
+```
+[1] 3.242317
+[1] 4.995372
+```
+> Los valores del ln de gastos en alimentos no saludables que dejan exactamente en el centro el 60% de probabilidad, son `a= 3.24` y `b= 4.99 USD`
+
+![Densidades de ln_alns](./Gráficas/grafica_03g_p08.png)
+
 
 ## 4. HIPÓTESIS ESTADÍSTICAS PARA ENTENDER EL PROBLEMA EN MÉXICO
 
