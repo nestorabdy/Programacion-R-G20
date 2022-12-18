@@ -1,5 +1,5 @@
 # Estadística y programación en R
-Equipo 20
+**Equipo 20**
 - Doníz Padilla Brenda Grisel
 - García Fragoso Nestor Abdy
 - Gudiño Ramirez Gustavo
