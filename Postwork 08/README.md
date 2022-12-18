@@ -97,7 +97,7 @@ Arrojando los siguientes resultados:
 
 Se realizaron también las medidas de forma, mediante la función skewness y kurtosis. 
 La distribución de los datos se asemeja a una distribución normal con sesgo a la izquierda. Sus medidas de tendencia central se ordenan de la siguiente manera:
-  Media < Mediana < Moda
+  Media = Mediana = Moda
 DUDA:Con la desviación estándar sd= 0.688 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  sesgo a la izquierda forma leptocúrtica"
 
 ```
@@ -140,7 +140,7 @@ Arrojando los siguientes resultados:
 - IQR: 1.466337
 
 Se observa que para dicha variable, la distribución de los datos se asemeja a una distribución normal con sesgo a la derecha.Sus medidas de tendencia central se ordenan de la siguiente manera:
-Media  =  Mediana  = Moda
+Media  =  Mediana  > Moda
 Con la desviación estándar sd= 1.04 podemos observar que no hay mucha dispersión de los datos, y de manera gráfica a través del histograma observamos que tiene  un pequeño sesgo a la derecha y forma mesocúrtica" 
 
 Para ahondar en el análisis de los datos, se realizó una gráfica Boxplot, por nivel socioeconómico y seguridad alimentaria, tomando como eje Y el gasto en alimentos
